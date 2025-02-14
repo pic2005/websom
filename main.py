@@ -11,16 +11,19 @@ app.config["SECRET_KEY"] = "This is secret key"
 app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///database.db"
 models.init_app(app)
 
-
 @app.route("/")
 def index():
-    db = models.db
-    notes = db.session.execute(
-        db.select(models.Note).order_by(models.Note.title)
-    ).scalars()
+    # แทนที่การดึงข้อมูลโน้ตจากฐานข้อมูล
+    # คุณสามารถดึงข้อมูลที่เกี่ยวข้องกับ "Women's Story" จากฐานข้อมูลหรือสร้างข้อมูลขึ้นมาเองก็ได้
+    women_stories = [
+        {"title": "Story 1", "content": "This is the first story about women."},
+        {"title": "Story 2", "content": "This is the second story about women."},
+        {"title": "Story 3", "content": "This is the third story about women."},
+    ]
+
     return flask.render_template(
         "index.html",
-        notes=notes,
+        stories=women_stories,  # ส่งข้อมูล stories ไปยัง template
     )
 
 
