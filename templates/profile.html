@@ -68,15 +68,16 @@
         <div class="username">{{ user.username }}</div>
         <div class="buttons">
             <button onclick="location.href='{{ url_for('home') }}'">หน้าแรก</button>
-            <button onclick="location.href='{{ url_for('description') }}'">คำธิบาย</button>
-            <button onclick="location.href='#'">ตารางการนับประจำเดือน</button>
+            <button onclick="location.href='{{ url_for('description') }}'">อธิบายการใช้ตารางนับประจำเดือน</button>
+            <button onclick="location.href='{{ url_for('calendar_view') }}'">ตารางการนับประจำเดือน</button>
+            <button onclick="location.href='{{ url_for('what_is_period') }}'">ประจำเดือนคืออะไร</button>
+            <button onclick="location.href='{{ url_for('abnormalities') }}'">ความผิดปกติ</button>
+            <button onclick="location.href='{{ url_for('period_color') }}'">สีประจำเดือน</button>
+            <button onclick="location.href='{{ url_for('period_pain') }}'">อาการปวดประจำเดือน</button>
+            <button onclick="location.href='{{ url_for('period_pain_treatment') }}'">วิธีรักษาการปวดประจำเดือน</button>
+            <button
+                onclick="location.href='{{ url_for('abnormal_period_pain_treatment') }}'">วิธีรักษาการปวดประจำเดือนที่มาผิดปกติ</button>
             <button onclick="location.href='{{ url_for('logout') }}'">ออกจากระบบ</button>
-            <button onclick="location.href='#'">ประจำเดือนคืออะไร</button>
-            <button onclick="location.href='#'">ความผิดปกติ</button>
-            <button onclick="location.href='#'">สีประจำเดือน</button>
-            <button onclick="location.href='#'">อาการปวดประจำเดือน</button>
-            <button onclick="location.href='#'">วิธีรักษาการปวดประจำเดือน</button>
-            <button onclick="location.href='#'">วิธีรักษาการปวดประจำเดือนที่มาผิดปกติ</button>
         </div>
     </div>
 </body>
