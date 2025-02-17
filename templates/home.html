@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Home</title>
+    <style>
+        .website-name {
+            background: linear-gradient(90deg, #FF6F61, #FFB6C1);
+            /* ไล่สีจากสีโอรสไปยังสีชมพูอ่อน */
+            -webkit-background-clip: text;
+            color: transparent;
+            text-align: center;
+            font-size: 5em;
+            /* ขนาดตัวอักษรใหญ่ขึ้น */
+            margin-top: 20%;
+            /* จัดให้อยู่ตรงกลางหน้า */
+        }
+
+        body {
+            background: #e0f7fa;
+            overflow: hidden;
+        }
+
+        .bubble {
+            position: absolute;
+            bottom: -50px;
+            width: 40px;
+            height: 40px;
+            background: rgba(255, 255, 255, 0.7);
+            border-radius: 50%;
+            animation: rise 10s infinite ease-in-out;
+        }
+
+        .bubble:nth-child(2) {
+            width: 20px;
+            height: 20px;
+            left: 20%;
+            animation-duration: 7s;
+            animation-delay: 2s;
+        }
+
+        .bubble:nth-child(3) {
+            width: 30px;
+            height: 30px;
+            left: 40%;
+            animation-duration: 5s;
+            animation-delay: 4s;
+        }
+
+        .bubble:nth-child(4) {
+            width: 50px;
+            height: 50px;
+            left: 60%;
+            animation-duration: 8s;
+            animation-delay: 1s;
+        }
+
+        .bubble:nth-child(5) {
+            width: 25px;
+            height: 25px;
+            left: 80%;
+            animation-duration: 6s;
+            animation-delay: 3s;
+        }
+
+        @keyframes rise {
+            0% {
+                bottom: -50px;
+                transform: translateX(0);
+            }
+
+            50% {
+                transform: translateX(20px);
+            }
+
+            100% {
+                bottom: 100%;
+                transform: translateX(-20px);
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <h1 class="website-name">{{ website_name }}</h1>
+    <div class="bubble"></div>
+    <div class="bubble"></div>
+    <div class="bubble"></div>
+    <div class="bubble"></div>
+    <div class="bubble"></div>
+    <!-- existing content -->
+</body>
+
+</html>
