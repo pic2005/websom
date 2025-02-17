@@ -69,10 +69,16 @@ def choose_character():
             user.character = form.character.data
             db.session.commit()
             flash('Character selected successfully!', 'success')
-            return redirect(url_for('home'))
+            return redirect(url_for('profile'))
     return render_template('choose_character.html', form=form)
 
-
+@app.route('/profile')
+def profile():
+    user_id = session.get('user_id')
+    if user_id:
+        user = User.query.get(user_id)
+        return render_template('profile.html', user=user)
+    return redirect(url_for('login'))
 
 if __name__ == '__main__':
     app.run(debug=True)
