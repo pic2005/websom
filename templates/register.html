@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>Log In</title>
+    <title>Register</title>
     <style>
         body {
             background: #e0f7fa;
@@ -15,7 +15,7 @@
             margin: 0;
         }
 
-        .login-container {
+        .register-container {
             background: white;
             padding: 20px;
             border-radius: 10px;
@@ -23,18 +23,18 @@
             text-align: center;
         }
 
-        .login-container h1 {
+        .register-container h1 {
             margin-bottom: 20px;
             font-size: 2em;
             color: #FF6F61;
         }
 
-        .login-container form {
+        .register-container form {
             display: flex;
             flex-direction: column;
         }
 
-        .login-container input {
+        .register-container input {
             margin-bottom: 10px;
             padding: 10px;
             font-size: 1em;
@@ -42,7 +42,7 @@
             border-radius: 5px;
         }
 
-        .login-container button {
+        .register-container button {
             padding: 10px;
             font-size: 1em;
             color: white;
@@ -52,40 +52,27 @@
             cursor: pointer;
         }
 
-        .login-container button:hover {
+        .register-container button:hover {
             background-color: #FFB6C1;
-        }
-
-        .login-container .signup-link {
-            margin-top: 10px;
-            font-size: 0.9em;
-        }
-
-        .login-container .signup-link a {
-            color: #FF6F61;
-            text-decoration: none;
-        }
-
-        .login-container .signup-link a:hover {
-            text-decoration: underline;
         }
     </style>
 </head>
 
 <body>
-    <div class="login-container">
-        <h1>Log In</h1>
+    <div class="register-container">
+        <h1>Register</h1>
         <form method="POST">
             {{ form.hidden_tag() }}
             {{ form.username.label }}<br>
             {{ form.username(size=32) }}<br>
+            {{ form.email.label }}<br>
+            {{ form.email(size=32) }}<br>
             {{ form.password.label }}<br>
             {{ form.password(size=32) }}<br>
+            {{ form.confirm_password.label }}<br>
+            {{ form.confirm_password(size=32) }}<br>
             {{ form.submit() }}
         </form>
-        <div class="signup-link">
-            <p>Don't have an account? <a href="{{ url_for('register') }}">Sign Up</a></p>
-        </div>
     </div>
 </body>
 
