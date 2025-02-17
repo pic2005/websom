@@ -1,4 +1,3 @@
-# website/app.py
 from flask import Flask, render_template, redirect, url_for, request, flash, session
 from flask_sqlalchemy import SQLAlchemy
 from forms import LoginForm, RegisterForm, CharacterForm
@@ -10,7 +9,8 @@ app.config['SECRET_KEY'] = 'your_secret_key'
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///../instance/database.db'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
-db = SQLAlchemy(app)
+from models import db
+db.init_app(app)
 
 # Ensure the templates folder is correctly referenced
 app.template_folder = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'templates')
@@ -51,7 +51,7 @@ def register():
         if existing_user:
             flash('Username already taken. Please choose another one.', 'danger')
         else:
-            hashed_password = generate_password_hash(form.password.data, method='sha256')
+            hashed_password = generate_password_hash(form.password.data, method='pbkdf2:sha256')
             new_user = User(username=form.username.data, email=form.email.data, password=hashed_password)
             db.session.add(new_user)
             db.session.commit()
@@ -71,6 +71,8 @@ def choose_character():
             flash('Character selected successfully!', 'success')
             return redirect(url_for('home'))
     return render_template('choose_character.html', form=form)
+
+
 
 if __name__ == '__main__':
     app.run(debug=True)
