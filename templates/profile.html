@@ -68,7 +68,7 @@
         <div class="username">{{ user.username }}</div>
         <div class="buttons">
             <button onclick="location.href='{{ url_for('home') }}'">หน้าแรก</button>
-            <button onclick="location.href='#'">คำธิบาย</button>
+            <button onclick="location.href='{{ url_for('description') }}'">คำธิบาย</button>
             <button onclick="location.href='#'">ตารางการนับประจำเดือน</button>
             <button onclick="location.href='{{ url_for('logout') }}'">ออกจากระบบ</button>
         </div>
