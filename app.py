@@ -3,6 +3,8 @@ from flask_sqlalchemy import SQLAlchemy
 from forms import LoginForm, RegisterForm, CharacterForm
 from werkzeug.security import generate_password_hash, check_password_hash
 import os
+import calendar
+from datetime import datetime
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'your_secret_key'
@@ -78,6 +80,52 @@ def profile():
     if user_id:
         user = User.query.get(user_id)
         return render_template('profile.html', user=user)
+    return redirect(url_for('login'))
+
+@app.route('/description')
+def description():
+    return render_template('description.html')
+
+@app.route('/what_is_period')
+def what_is_period():
+    return render_template('what_is_period.html')
+
+@app.route('/abnormalities')
+def abnormalities():
+    return render_template('abnormalities.html')
+
+@app.route('/period_color')
+def period_color():
+    return render_template('period_color.html')
+
+@app.route('/period_pain')
+def period_pain():
+    return render_template('period_pain.html')
+
+@app.route('/period_pain_treatment')
+def period_pain_treatment():
+    return render_template('period_pain_treatment.html')
+
+@app.route('/abnormal_period_pain_treatment')
+def abnormal_period_pain_treatment():
+    return render_template('abnormal_period_pain_treatment.html')
+
+@app.route('/calendar')
+def calendar_view():
+    cal = ""
+    for year in range(2025, 2031):
+        cal += f"<h2>{year}</h2>"
+        cal += calendar.HTMLCalendar().formatyear(year)
+    return render_template('calendar.html', calendar=cal)
+
+@app.route('/next_page')
+def next_page():
+    return render_template('next_page.html')
+
+@app.route('/logout')
+def logout():
+    session.pop('user_id', None)
+    flash('You have been logged out.', 'success')
     return redirect(url_for('login'))
 
 if __name__ == '__main__':
