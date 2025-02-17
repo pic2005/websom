@@ -5,21 +5,50 @@
     <meta charset="UTF-8">
     <title>Home</title>
     <style>
-        .website-name {
-            background: linear-gradient(90deg, #FF6F61, #FFB6C1);
-            /* ไล่สีจากสีโอรสไปยังสีชมพูอ่อน */
-            -webkit-background-clip: text;
-            color: transparent;
-            text-align: center;
-            font-size: 5em;
-            /* ขนาดตัวอักษรใหญ่ขึ้น */
-            margin-top: 20%;
-            /* จัดให้อยู่ตรงกลางหน้า */
-        }
-
         body {
             background: #e0f7fa;
             overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            height: 100vh;
+            justify-content: flex-start;
+            /* จัดให้เนื้อหาอยู่ด้านบน */
+            position: relative;
+        }
+
+        .header {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-top: 5%;
+        }
+
+        .website-name {
+            background: linear-gradient(90deg, #FF6F61, #FFB6C1);
+            -webkit-background-clip: text;
+            color: transparent;
+            font-size: 7.5em;
+            /* ใหญ่ขึ้น */
+            font-weight: bold;
+            margin-bottom: 20px;
+            /* เพิ่มระยะห่างจากปุ่ม */
+            text-align: center;
+        }
+
+        .login-button {
+            padding: 15px 30px;
+            font-size: 1.5em;
+            color: white;
+            background-color: #FF6F61;
+            border: none;
+            border-radius: 10px;
+            text-decoration: none;
+            transition: 0.3s;
+        }
+
+        .login-button:hover {
+            background-color: #FFB6C1;
         }
 
         .bubble {
@@ -83,13 +112,16 @@
 </head>
 
 <body>
-    <h1 class="website-name">{{ website_name }}</h1>
+    <div class="header">
+        <h1 class="website-name">{{ website_name }}</h1>
+        <a href="{{ url_for('login') }}" class="login-button">Log In</a>
+    </div>
+
     <div class="bubble"></div>
     <div class="bubble"></div>
     <div class="bubble"></div>
     <div class="bubble"></div>
     <div class="bubble"></div>
-    <!-- existing content -->
 </body>
 
 </html>
