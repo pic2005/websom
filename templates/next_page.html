@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>คำธิบาย</title>
+    <title>หน้าถัดไป</title>
     <style>
         body {
             background: #e0f7fa url('https://via.placeholder.com/150?text=?') repeat;
@@ -55,18 +55,13 @@
 <body>
     <div class="container">
         <div class="section">
-            <h1>ประจำเดือนคืออะไร</h1>
-            <p></p>
-        </div>
-
-        <div class="section">
-            <h1>สาเหตุของประจำเดือน</h1>
-            <p></p>
+            <h1>หน้าถัดไป</h1>
+            <p>เนื้อหาของหน้าถัดไป...</p>
         </div>
 
         <div class="buttons">
             <button onclick="location.href='{{ url_for('profile') }}'">กลับไปหน้าหลัก</button>
-            <button onclick="location.href='{{ url_for('next_page') }}'">หน้าถัดไป</button>
+            <button onclick="location.href='{{ url_for('description') }}'">กลับไปหน้าคำธิบาย</button>
         </div>
     </div>
 </body>
