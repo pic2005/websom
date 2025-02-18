@@ -66,6 +66,7 @@
     <div class="profile-container">
         <div class="emoji">{{ user.character }}</div>
         <div class="username">{{ user.username }}</div>
+        <p>วันที่ปัจจุบัน: {{ current_date }}</p>
         <div class="buttons">
             <button onclick="location.href='{{ url_for('home') }}'">หน้าแรก</button>
             <button onclick="location.href='{{ url_for('description') }}'">อธิบายการใช้ตารางนับประจำเดือน</button>
