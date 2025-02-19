@@ -6,26 +6,97 @@
     <title>Profile</title>
     <style>
         body {
-            background: #e0f7fa;
+            background: #ffe6f2;
             margin: 0;
             padding: 0;
             display: flex;
-            flex-direction: column;
             align-items: flex-start;
             justify-content: flex-start;
             height: 100vh;
+            font-family: 'Arial', sans-serif;
+            position: relative;
+        }
+
+        .container {
+            display: flex;
+            flex-direction: column;
+            /* จัดเรียงแนวตั้ง */
+            align-items: flex-start;
+            /* จัดให้อยู่ฝั่งซ้าย */
+        }
+
+        .period-start-date {
+            margin-top: 20px;
+            /* เพิ่มระยะห่างด้านบน */
+        }
+
+
+        .current-date {
+            background: white;
+            padding: 15px 20px;
+            border-radius: 10px;
+            font-size: 1.8em;
+            font-weight: bold;
+            color: #ff4081;
+            box-shadow: 0 0 10px rgba(255, 105, 180, 0.2);
+            position: absolute;
+            top: 50px;
+            left: 1000px;
+            display: flex;
+            align-items: center;
+        }
+
+        .button-group {
+            display: flex;
+            gap: 10px;
+            margin-left: 20px;
+        }
+
+        .button-group button {
+            border: none;
+            border-radius: 50%;
+            width: 60px;
+            /* เพิ่มขนาดปุ่ม */
+            height: 60px;
+            /* เพิ่มขนาดปุ่ม */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            font-size: 1.2em;
+            transition: 0.3s;
+            background-color: white;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .button-group .blood-button {
+            background-color: #ff4081;
+            color: white;
+        }
+
+        .button-group .blood-button:hover {
+            background-color: #d63384;
+        }
+
+        .button-group .close-button {
+            background-color: #ff6b6b;
+            color: white;
+        }
+
+        .button-group .close-button:hover {
+            background-color: #ff4757;
         }
 
         .profile-container {
-            background: white;
+            background: #fff0f5;
             padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border-radius: 15px;
+            box-shadow: 0 0 10px rgba(255, 105, 180, 0.2);
             text-align: left;
-            margin: 20px;
             display: flex;
             flex-direction: column;
             align-items: flex-start;
+            width: 320px;
         }
 
         .profile-container .emoji {
@@ -35,6 +106,8 @@
         .profile-container .username {
             font-size: 1.5em;
             margin-top: 10px;
+            font-weight: bold;
+            color: #d63384;
         }
 
         .buttons {
@@ -42,6 +115,7 @@
             display: flex;
             flex-direction: column;
             width: 100%;
+            align-items: flex-start;
         }
 
         .buttons button {
@@ -49,36 +123,63 @@
             font-size: 1em;
             margin-bottom: 10px;
             border: none;
-            border-radius: 5px;
+            border-radius: 10px;
             cursor: pointer;
-            background-color: #FF6F61;
+            background-color: #ff85a2;
             color: white;
             width: 100%;
+            text-align: left;
+            transition: 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 10px;
         }
 
         .buttons button:hover {
-            background-color: #FFB6C1;
+            background-color: #ffb6c1;
+        }
+
+        .period-start-date {
+            background: white;
+            padding: 15px 20px;
+            border-radius: 10px;
+            font-size: 1.8em;
+            font-weight: bold;
+            color: #ff4081;
+            box-shadow: 0 0 10px rgba(255, 105, 180, 0.2);
+            margin-top: 20px;
         }
     </style>
 </head>
 
 <body>
-    <div class="profile-container">
-        <div class="emoji">{{ user.character }}</div>
-        <div class="username">{{ user.username }}</div>
-        <p>วันที่ปัจจุบัน: {{ current_date }}</p>
-        <div class="buttons">
-            <button onclick="location.href='{{ url_for('home') }}'">หน้าแรก</button>
-            <button onclick="location.href='{{ url_for('description') }}'">อธิบายการใช้ตารางนับประจำเดือน</button>
-            <button onclick="location.href='{{ url_for('calendar_view') }}'">ตารางการนับประจำเดือน</button>
-            <button onclick="location.href='{{ url_for('what_is_period') }}'">ประจำเดือนคืออะไร</button>
-            <button onclick="location.href='{{ url_for('abnormalities') }}'">ความผิดปกติ</button>
-            <button onclick="location.href='{{ url_for('period_color') }}'">สีประจำเดือน</button>
-            <button onclick="location.href='{{ url_for('period_pain') }}'">อาการปวดประจำเดือน</button>
-            <button onclick="location.href='{{ url_for('period_pain_treatment') }}'">วิธีรักษาการปวดประจำเดือน</button>
-            <button
-                onclick="location.href='{{ url_for('abnormal_period_pain_treatment') }}'">วิธีรักษาการปวดประจำเดือนที่มาผิดปกติ</button>
-            <button onclick="location.href='{{ url_for('logout') }}'">ออกจากระบบ</button>
+    <div class="container">
+        <div class="profile-container">
+            <div class="emoji">{{ user.character }}</div>
+            <div class="username">{{ user.username }}</div>
+            <div class="buttons">
+                <button onclick="location.href='{{ url_for('home') }}'">🏠 หน้าแรก</button>
+                <button onclick="location.href='{{ url_for('description') }}'">📖
+                    อธิบายการใช้ตารางนับประจำเดือน</button>
+                <button onclick="location.href='{{ url_for('calendar_view') }}'">🗓️ ตารางการนับประจำเดือน</button>
+                <button onclick="location.href='{{ url_for('what_is_period') }}'">❓ ประจำเดือนคืออะไร</button>
+                <button onclick="location.href='{{ url_for('abnormalities') }}'">⚠️ ความผิดปกติ</button>
+                <button onclick="location.href='{{ url_for('period_color') }}'">🎨 สีประจำเดือน</button>
+                <button onclick="location.href='{{ url_for('period_pain') }}'">🤕 อาการปวดประจำเดือน</button>
+                <button onclick="location.href='{{ url_for('period_pain_treatment') }}'">💊
+                    วิธีรักษาการปวดประจำเดือน</button>
+                <button onclick="location.href='{{ url_for('abnormal_period_pain_treatment') }}'">🏥
+                    วิธีรักษาการปวดประจำเดือนที่มาผิดปกติ</button>
+                <button onclick="location.href='{{ url_for('logout') }}'">🚪 ออกจากระบบ</button>
+            </div>
+            <div class="period-start-date">📅 วันที่ประจำเดือนมา: {{ period_start_date }}</div>
+        </div>
+        <div class="current-date">
+            📅 วันที่ปัจจุบัน: {{ current_date }}
+        </div>
+        <div class="button-group">
+            <button class="blood-button">🩸</button>
+            <button class="close-button">❌</button>
         </div>
     </div>
 </body>

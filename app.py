@@ -79,7 +79,8 @@ def profile():
     user_id = session.get('user_id')
     if user_id:
         user = User.query.get(user_id)
-        return render_template('profile.html', user=user)
+        current_date = datetime.now().strftime("%d-%m-%Y")  # เปลี่ยนรูปแบบวันที่เป็น วัน-เดือน-ปี
+        return render_template('profile.html', user=user, current_date=current_date)
     return redirect(url_for('login'))
 
 @app.route('/description')
@@ -112,14 +113,33 @@ def abnormal_period_pain_treatment():
 
 @app.route('/calendar')
 def calendar_view():
+    now = datetime.now()
     cal = ""
     for year in range(2025, 2031):
         cal += f"<h2>{year}</h2>"
-        cal += calendar.HTMLCalendar().formatyear(year)
-    return render_template('calendar.html', calendar=cal)
+        for month in range(1, 13, 2):
+            cal += "<div class='row'>"
+            cal += "<div class='month'>"
+            cal += calendar.HTMLCalendar().formatmonth(year, month)
+            cal += "</div>"
+            if month + 1 <= 12:
+                cal += "<div class='month'>"
+                cal += calendar.HTMLCalendar().formatmonth(year, month + 1)
+                cal += "</div>"
+            cal += "</div>"
+    return render_template('calendar.html', calendar=cal, current_day=now.day, current_month=now.month, current_year=now.year)
 
+@app.route('/period_start_date')
+def period_start_date():
+    user_id = session.get('user_id')
+    if user_id:
+        user = User.query.get(user_id)
+        period_start_date = user.period_start_date.strftime("%d-%m-%Y") if user.period_start_date else "ไม่พบข้อมูล"
+        return render_template('period_start_date.html', period_start_date=period_start_date)
+    return redirect(url_for('login'))
+    
 @app.route('/next_page')
-def next_page():
+def next_pagเe():
     return render_template('next_page.html')
 
 @app.route('/logout')
