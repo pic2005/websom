@@ -162,6 +162,9 @@
                     <input type="date" id="period_end_date" name="period_end_date" value="{{ period_end_date }}">
                     <button type="submit">Save</button>
                 </form>
+                {% if next_period_date %}
+                <p>ประจำเดือนจะมาวันที่: {{ next_period_date }}</p>
+                {% endif %}
             </div>
         </div>
     </div>
