@@ -66,6 +66,9 @@
             border: none;
             border-radius: 10px;
             transition: 0.3s;
+            position: fixed;
+            top: 10px;
+            left: 10px;
         }
 
         .openbtn:hover {
@@ -141,7 +144,7 @@
     </div>
 
     <div id="main">
-        <button class="openbtn" onclick="openNav()">☰ เปิดแถบเมนู</button>
+        <button class="openbtn" onclick="openNav()">☰</button>
         <div class="container">
             <div class="current-date">
                 📅 วันที่ปัจจุบัน: {{ current_date }}
