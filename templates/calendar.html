@@ -1,100 +1,26 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
-    <title>ตารางการนับประจำเดือน</title>
-    <style>
-        body {
-            background: #e0f7fa;
-            margin: 0;
-            padding: 20px;
-            font-family: Arial, sans-serif;
-            font-size: 1.3em;
-        }
-
-        .container {
-            max-width: 1200px;
-            margin: auto;
-        }
-
-        .calendar {
-            background: white;
-            padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            margin-bottom: 20px;
-            overflow-x: auto;
-        }
-
-        .row {
-            display: flex;
-            justify-content: space-between;
-            margin-bottom: 20px;
-        }
-
-        .month {
-            width: 48%;
-        }
-
-        .calendar table {
-            width: 100%;
-            border-collapse: collapse;
-        }
-
-        .calendar th,
-        .calendar td {
-            border: 1px solid #ddd;
-            padding: 10px;
-            text-align: center;
-        }
-
-        .calendar th {
-            background-color: #f2f2f2;
-            color: #333;
-        }
-
-        .calendar td {
-            background-color: #fff;
-            color: #333;
-        }
-
-        .calendar .current-day {
-            background-color: #FFB6C1;
-        }
-
-        .buttons {
-            display: flex;
-            justify-content: flex-start;
-            margin-top: 20px;
-        }
-
-        .buttons button {
-            padding: 10px 20px;
-            font-size: 1em;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            background-color: #FF6F61;
-            color: white;
-        }
-
-        .buttons button:hover {
-            background-color: #FFB6C1;
-        }
-    </style>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calendar</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
 </head>
-
 <body>
-    <div class="container">
-        <div class="calendar">
-            {{ calendar|safe }}
-        </div>
-
-        <div class="buttons">
-            <button onclick="location.href='{{ url_for('profile') }}'">ย้อนกลับ</button>
-        </div>
+    <h1>Calendar</h1>
+    <div class="calendar">
+        {{ calendar|safe }}
+    </div>
+    <div class="current-date">
+        <h2>Current Date</h2>
+        <p>{{ current_day }}-{{ current_month }}-{{ current_year }}</p>
+    </div>
+    <div class="period-start-date">
+        <h2>Period Start Date</h2>
+        <form method="POST">
+            <input type="date" name="period_start_date" value="{{ period_start_date }}">
+            <button type="submit">Save</button>
+        </form>
     </div>
 </body>
-
 </html>

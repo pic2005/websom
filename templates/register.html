@@ -1,79 +1,140 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
-    <title>Register</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>สมัครสมาชิก</title>
     <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
         body {
-            background: #e0f7fa;
+            min-height: 100vh;
+            background: linear-gradient(135deg, #667eea 0%, #f17a88 100%);
             display: flex;
-            flex-direction: column;
             align-items: center;
             justify-content: center;
-            height: 100vh;
-            margin: 0;
         }
 
         .register-container {
-            background: white;
-            padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            text-align: center;
+            background: rgba(255, 255, 255, 0.95);
+            padding: 2.5rem;
+            border-radius: 20px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 400px;
+            margin: 1rem;
+            backdrop-filter: blur(10px);
         }
 
         .register-container h1 {
-            margin-bottom: 20px;
-            font-size: 2em;
-            color: #FF6F61;
+            color: #333;
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+            text-align: center;
+            font-weight: 600;
         }
 
-        .register-container form {
-            display: flex;
-            flex-direction: column;
+        .form-group {
+            margin-bottom: 1.5rem;
         }
 
-        .register-container input {
-            margin-bottom: 10px;
-            padding: 10px;
-            font-size: 1em;
-            border: 1px solid #ccc;
-            border-radius: 5px;
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: #555;
+            font-size: 0.9rem;
         }
 
-        .register-container button {
-            padding: 10px;
-            font-size: 1em;
+        .form-group input {
+            width: 100%;
+            padding: 0.8rem;
+            border: 2px solid #e1e1e1;
+            border-radius: 10px;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            background: white;
+        }
+
+        .form-group input:focus {
+            outline: none;
+            border-color: #ea668e;
+            box-shadow: 0 0 0 3px rgba(245, 165, 213, 0.1);
+        }
+
+        .submit-btn {
+            width: 100%;
+            padding: 1rem;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             color: white;
-            background-color: #FF6F61;
             border: none;
-            border-radius: 5px;
+            border-radius: 10px;
+            font-size: 1rem;
+            font-weight: 600;
             cursor: pointer;
+            transition: transform 0.2s ease;
+            margin-top: 1rem;
         }
 
-        .register-container button:hover {
-            background-color: #FFB6C1;
+        .submit-btn:hover {
+            transform: translateY(-2px);
+        }
+
+        .login-link {
+            margin-top: 1.5rem;
+            text-align: center;
+            color: #666;
+        }
+
+        .login-link a {
+            color: #ea66be;
+            text-decoration: none;
+            font-weight: 600;
+            transition: color 0.2s ease;
+        }
+
+        .login-link a:hover {
+            color: #764ba2;
+            text-decoration: underline;
+        }
+
+        @media (max-width: 480px) {
+            .register-container {
+                padding: 1.5rem;
+            }
         }
     </style>
 </head>
-
 <body>
     <div class="register-container">
-        <h1>Register</h1>
+        <h1>สมัครสมาชิก</h1>
         <form method="POST">
             {{ form.hidden_tag() }}
-            {{ form.username.label }}<br>
-            {{ form.username(size=32) }}<br>
-            {{ form.email.label }}<br>
-            {{ form.email(size=32) }}<br>
-            {{ form.password.label }}<br>
-            {{ form.password(size=32) }}<br>
-            {{ form.confirm_password.label }}<br>
-            {{ form.confirm_password(size=32) }}<br>
-            {{ form.submit() }}
+            <div class="form-group">
+                {{ form.username.label(class="form-label") }}
+                {{ form.username(class="form-input", placeholder="กรุณากรอกชื่อผู้ใช้") }}
+            </div>
+            <div class="form-group">
+                {{ form.email.label(class="form-label") }}
+                {{ form.email(class="form-input", placeholder="กรุณากรอกอีเมล") }}
+            </div>
+            <div class="form-group">
+                {{ form.password.label(class="form-label") }}
+                {{ form.password(class="form-input", placeholder="กรุณากรอกรหัสผ่าน") }}
+            </div>
+            <div class="form-group">
+                {{ form.confirm_password.label(class="form-label") }}
+                {{ form.confirm_password(class="form-input", placeholder="กรุณายืนยันรหัสผ่าน") }}
+            </div>
+            {{ form.submit(class="submit-btn") }}
         </form>
+        <div class="login-link">
+            <p>มีบัญชีผู้ใช้แล้ว? <a href="{{ url_for('login') }}">เข้าสู่ระบบ</a></p>
+        </div>
     </div>
 </body>
-
 </html>

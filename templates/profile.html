@@ -25,12 +25,6 @@
             /* จัดให้อยู่ฝั่งซ้าย */
         }
 
-        .period-start-date {
-            margin-top: 20px;
-            /* เพิ่มระยะห่างด้านบน */
-        }
-
-
         .current-date {
             background: white;
             padding: 15px 20px;
@@ -43,48 +37,8 @@
             top: 50px;
             left: 1000px;
             display: flex;
-            align-items: center;
-        }
-
-        .button-group {
-            display: flex;
-            gap: 10px;
-            margin-left: 20px;
-        }
-
-        .button-group button {
-            border: none;
-            border-radius: 50%;
-            width: 60px;
-            /* เพิ่มขนาดปุ่ม */
-            height: 60px;
-            /* เพิ่มขนาดปุ่ม */
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            font-size: 1.2em;
-            transition: 0.3s;
-            background-color: white;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-        }
-
-        .button-group .blood-button {
-            background-color: #ff4081;
-            color: white;
-        }
-
-        .button-group .blood-button:hover {
-            background-color: #d63384;
-        }
-
-        .button-group .close-button {
-            background-color: #ff6b6b;
-            color: white;
-        }
-
-        .button-group .close-button:hover {
-            background-color: #ff4757;
+            flex-direction: column;
+            align-items: flex-start;
         }
 
         .profile-container {
@@ -139,15 +93,41 @@
             background-color: #ffb6c1;
         }
 
-        .period-start-date {
-            background: white;
-            padding: 15px 20px;
-            border-radius: 10px;
-            font-size: 1.8em;
-            font-weight: bold;
-            color: #ff4081;
-            box-shadow: 0 0 10px rgba(255, 105, 180, 0.2);
+        .period-dates {
             margin-top: 20px;
+        }
+
+        .period-dates h2 {
+            font-size: 1.2em;
+            color: #d63384;
+        }
+
+        .period-dates form {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .period-dates form input {
+            padding: 10px;
+            border: 1px solid #d63384;
+            border-radius: 5px;
+            font-size: 1em;
+        }
+
+        .period-dates form button {
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            background-color: #d63384;
+            color: white;
+            font-size: 1em;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .period-dates form button:hover {
+            background-color: #ff85a2;
         }
     </style>
 </head>
@@ -166,20 +146,23 @@
                 <button onclick="location.href='{{ url_for('abnormalities') }}'">⚠️ ความผิดปกติ</button>
                 <button onclick="location.href='{{ url_for('period_color') }}'">🎨 สีประจำเดือน</button>
                 <button onclick="location.href='{{ url_for('period_pain') }}'">🤕 อาการปวดประจำเดือน</button>
-                <button onclick="location.href='{{ url_for('period_pain_treatment') }}'">💊
-                    วิธีรักษาการปวดประจำเดือน</button>
-                <button onclick="location.href='{{ url_for('abnormal_period_pain_treatment') }}'">🏥
-                    วิธีรักษาการปวดประจำเดือนที่มาผิดปกติ</button>
+                <button onclick="location.href='{{ url_for('period_pain_treatment') }}'">💊 วิธีรักษาการปวดประจำเดือน</button>
+                <button onclick="location.href='{{ url_for('abnormal_period_pain_treatment') }}'">🏥 วิธีรักษาการปวดประจำเดือนที่มาผิดปกติ</button>
                 <button onclick="location.href='{{ url_for('logout') }}'">🚪 ออกจากระบบ</button>
             </div>
-            <div class="period-start-date">📅 วันที่ประจำเดือนมา: {{ period_start_date }}</div>
         </div>
         <div class="current-date">
             📅 วันที่ปัจจุบัน: {{ current_date }}
-        </div>
-        <div class="button-group">
-            <button class="blood-button">🩸</button>
-            <button class="close-button">❌</button>
+            <div class="period-dates">
+                <h2>Period Dates</h2>
+                <form method="POST">
+                    <label for="period_start_date">Start Date:</label>
+                    <input type="date" id="period_start_date" name="period_start_date" value="{{ period_start_date }}">
+                    <label for="period_end_date">End Date:</label>
+                    <input type="date" id="period_end_date" name="period_end_date" value="{{ period_end_date }}">
+                    <button type="submit">Save</button>
+                </form>
+            </div>
         </div>
     </div>
 </body>
