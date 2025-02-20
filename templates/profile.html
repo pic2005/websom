@@ -19,60 +19,9 @@
 
         .container {
             display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
-
-        .sidebar {
-            height: 100%;
-            width: 250px;
-            position: fixed;
-            top: 0;
-            left: -250px;
-            background-color: #fff0f5;
-            overflow-x: hidden;
-            transition: 0.5s;
-            padding-top: 60px;
-            box-shadow: 0 0 10px rgba(255, 105, 180, 0.2);
-        }
-
-        .sidebar a {
-            padding: 10px 15px;
-            text-decoration: none;
-            font-size: 1em;
-            color: #d63384;
-            display: block;
-            transition: 0.3s;
-        }
-
-        .sidebar a:hover {
-            background-color: #ffb6c1;
-        }
-
-        .sidebar .closebtn {
-            position: absolute;
-            top: 0;
-            right: 25px;
-            font-size: 36px;
-            margin-left: 50px;
-        }
-
-        .openbtn {
-            font-size: 20px;
-            cursor: pointer;
-            background-color: #ff85a2;
-            color: white;
-            padding: 10px 15px;
-            border: none;
-            border-radius: 10px;
-            transition: 0.3s;
-            position: fixed;
-            top: 10px;
-            left: 10px;
-        }
-
-        .openbtn:hover {
-            background-color: #ffb6c1;
+            flex-direction: row;
+            align-items: flex-start;
+            gap: 20px;
         }
 
         .current-date {
@@ -87,6 +36,58 @@
             display: flex;
             flex-direction: column;
             align-items: center;
+        }
+
+        .profile-container {
+            background: #fff0f5;
+            padding: 20px;
+            border-radius: 15px;
+            box-shadow: 0 0 10px rgba(255, 105, 180, 0.2);
+            text-align: left;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            width: 320px;
+        }
+
+        .profile-container .emoji {
+            font-size: 5em;
+        }
+
+        .profile-container .username {
+            font-size: 1.5em;
+            margin-top: 10px;
+            font-weight: bold;
+            color: #d63384;
+        }
+
+        .buttons {
+            margin-top: 20px;
+            display: flex;
+            flex-direction: column;
+            width: 100%;
+            align-items: flex-start;
+        }
+
+        .buttons button {
+            padding: 10px 20px;
+            font-size: 1em;
+            margin-bottom: 10px;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            background-color: #ff85a2;
+            color: white;
+            width: 100%;
+            text-align: left;
+            transition: 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .buttons button:hover {
+            background-color: #ffb6c1;
         }
 
         .period-dates {
@@ -125,57 +126,100 @@
         .period-dates form button:hover {
             background-color: #ff85a2;
         }
+
+        .pain-log {
+            background: white;
+            padding: 15px 20px;
+            border-radius: 10px;
+            font-size: 1.2em;
+            color: #ff4081;
+            box-shadow: 0 0 10px rgba(255, 105, 180, 0.2);
+            margin-top: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            width: 320px;
+        }
+
+        .pain-log h2 {
+            font-size: 1.2em;
+            color: #d63384;
+        }
+
+        .pain-log form {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .pain-log form textarea {
+            padding: 10px;
+            border: 1px solid #d63384;
+            border-radius: 5px;
+            font-size: 1em;
+            resize: vertical;
+            height: 100px;
+        }
+
+        .pain-log form button {
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            background-color: #d63384;
+            color: white;
+            font-size: 1em;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .pain-log form button:hover {
+            background-color: #ff85a2;
+        }
     </style>
 </head>
 
 <body>
-    <div id="mySidebar" class="sidebar">
-        <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">×</a>
-        <a href="{{ url_for('home') }}">🏠 หน้าแรก</a>
-        <a href="{{ url_for('description') }}">📖 อธิบายการใช้ตารางนับประจำเดือน</a>
-        <a href="{{ url_for('calendar_view') }}">🗓️ ตารางการนับประจำเดือน</a>
-        <a href="{{ url_for('what_is_period') }}">❓ ประจำเดือนคืออะไร</a>
-        <a href="{{ url_for('abnormalities') }}">⚠️ ความผิดปกติ</a>
-        <a href="{{ url_for('period_color') }}">🎨 สีประจำเดือน</a>
-        <a href="{{ url_for('period_pain') }}">🤕 อาการปวดประจำเดือน</a>
-        <a href="{{ url_for('period_pain_treatment') }}">💊 วิธีรักษาการปวดประจำเดือน</a>
-        <a href="{{ url_for('abnormal_period_pain_treatment') }}">🏥 วิธีรักษาการปวดประจำเดือนที่มาผิดปกติ</a>
-        <a href="{{ url_for('logout') }}">🚪 ออกจากระบบ</a>
-    </div>
-
-    <div id="main">
-        <button class="openbtn" onclick="openNav()">☰</button>
-        <div class="container">
-            <div class="current-date">
-                📅 วันที่ปัจจุบัน: {{ current_date }}
-                <div class="period-dates">
-                    <h2>Period Dates</h2>
-                    <form method="POST">
-                        <label for="period_start_date">Start Date:</label>
-                        <input type="date" id="period_start_date" name="period_start_date" value="{{ period_start_date }}">
-                        <label for="period_end_date">End Date:</label>
-                        <input type="date" id="period_end_date" name="period_end_date" value="{{ period_end_date }}">
-                        <button type="submit">Save</button>
-                    </form>
-                    {% if next_period_date %}
-                    <p>ประจำเดือนจะมาวันที่: {{ next_period_date }}</p>
-                    {% endif %}
-                </div>
+    <div class="container">
+        <div class="profile-container">
+            <div class="emoji">{{ user.character }}</div>
+            <div class="username">{{ user.username }}</div>
+            <div class="buttons">
+                <button onclick="location.href='{{ url_for('home') }}'">🏠 หน้าแรก</button>
+                <button onclick="location.href='{{ url_for('description') }}'">📖 อธิบายการใช้ตารางนับประจำเดือน</button>
+                <button onclick="location.href='{{ url_for('calendar_view') }}'">🗓️ ตารางการนับประจำเดือน</button>
+                <button onclick="location.href='{{ url_for('what_is_period') }}'">❓ ประจำเดือนคืออะไร</button>
+                <button onclick="location.href='{{ url_for('abnormalities') }}'">⚠️ ความผิดปกติ</button>
+                <button onclick="location.href='{{ url_for('period_color') }}'">🎨 สีประจำเดือน</button>
+                <button onclick="location.href='{{ url_for('period_pain') }}'">🤕 อาการปวดประจำเดือน</button>
+                <button onclick="location.href='{{ url_for('period_pain_treatment') }}'">💊 วิธีรักษาการปวดประจำเดือน</button>
+                <button onclick="location.href='{{ url_for('abnormal_period_pain_treatment') }}'">🏥 วิธีรักษาการปวดประจำเดือนที่มาผิดปกติ</button>
+                <button onclick="location.href='{{ url_for('logout') }}'">🚪 ออกจากระบบ</button>
             </div>
         </div>
+        <div class="current-date">
+            📅 วันที่ปัจจุบัน: {{ current_date }}
+            <div class="period-dates">
+                <h2>Period Dates</h2>
+                <form method="POST">
+                    <label for="period_start_date">Start Date:</label>
+                    <input type="date" id="period_start_date" name="period_start_date" value="{{ period_start_date }}">
+                    <label for="period_end_date">End Date:</label>
+                    <input type="date" id="period_end_date" name="period_end_date" value="{{ period_end_date }}">
+                    <button type="submit">Save</button>
+                </form>
+                {% if next_period_date %}
+                <p>ประจำเดือนจะมาวันที่: {{ next_period_date }}</p>
+                {% endif %}
+            </div>
+        </div>
+        <div class="pain-log">
+            <h2>บันทึกอาการปวดและความรู้สึก</h2>
+            <form method="POST" action="{{ url_for('save_pain_log') }}">
+                <textarea name="pain_log" placeholder="บันทึกอาการปวดและความรู้สึกของคุณที่นี่..."></textarea>
+                <button type="submit">บันทึก</button>
+            </form>
+        </div>
     </div>
-
-    <script>
-        function openNav() {
-            document.getElementById("mySidebar").style.left = "0";
-            document.getElementById("main").style.marginLeft = "250px";
-        }
-
-        function closeNav() {
-            document.getElementById("mySidebar").style.left = "-250px";
-            document.getElementById("main").style.marginLeft = "0";
-        }
-    </script>
 </body>
 
 </html>
