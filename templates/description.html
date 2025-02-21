@@ -6,33 +6,37 @@
     <title>คำธิบาย</title>
     <style>
         body {
-            background: #e0f7fa;
+            background: linear-gradient(135deg, #667eea 0%, #f17a88 100%);
             margin: 0;
             padding: 20px;
-            font-family: Arial, sans-serif;
-            font-size: 1.3em;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            display: flex;
+            align-items: flex-start;
+            justify-content: center;
+            min-height: 100vh;
         }
 
         .container {
             max-width: 800px;
             margin: auto;
-        }
-
-        .section {
             background: white;
             padding: 20px;
             border-radius: 10px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            margin-bottom: 20px;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            backdrop-filter: blur(10px);
         }
 
         h1 {
-            color: #FF6F61;
+            color: #764ba2;
         }
 
         .buttons {
             display: flex;
-            justify-content: space-between;
+            justify-content: center;
             margin-top: 20px;
         }
 
@@ -42,16 +46,17 @@
             border: none;
             border-radius: 5px;
             cursor: pointer;
-            background-color: #FF6F61;
+            background-color: #333;
             color: white;
         }
 
         .buttons button:hover {
-            background-color: #FFB6C1;
+            background-color: #555;
         }
 
         .instructions {
             line-height: 1.6;
+            text-align: left;
         }
 
         .instructions p {
@@ -63,6 +68,14 @@
         }
 
         .instructions ol li {
+            margin-bottom: 10px;
+        }
+
+        .instructions ul {
+            padding-left: 20px;
+        }
+
+        .instructions ul li {
             margin-bottom: 10px;
         }
     </style>
@@ -83,12 +96,14 @@
                     <li>มีประจำเดือนครั้งถัดไปวันที่ 28: รอบประจำเดือนจะอยู่ระหว่างวันที่ 1 ถึงวันที่ 27 (28 วัน)</li>
                 </ul>
                 <p>บันทึกข้อมูล: จดบันทึกวันที่เริ่มต้นและสิ้นสุดของประจำเดือนทุกครั้งเพื่อช่วยในการติดตามรอบประจำเดือนของคุณ</p>
+                <h2>คำแนะนำเพิ่มเติม</h2>
+                <p>การนับประจำเดือนสามารถช่วยให้คุณทราบถึงรอบประจำเดือนของคุณและสามารถวางแผนกิจกรรมต่าง ๆ ได้อย่างมีประสิทธิภาพ นอกจากนี้ยังสามารถช่วยให้คุณทราบถึงความผิดปกติของรอบประจำเดือนและปรึกษาแพทย์ได้ทันทีหากมีความผิดปกติ</p>
+                <p>หากคุณมีคำถามหรือข้อสงสัยเกี่ยวกับการนับประจำเดือน ควรปรึกษาแพทย์หรือผู้เชี่ยวชาญเพื่อขอคำแนะนำเพิ่มเติม</p>
             </div>
         </div>
 
         <div class="buttons">
             <button onclick="location.href='{{ url_for('profile') }}'">กลับไปหน้าหลัก</button>
-            <button onclick="location.href='{{ url_for('next_page') }}'">หน้าถัดไป</button>
         </div>
     </div>
 </body>
