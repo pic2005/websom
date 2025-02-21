@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Profile</title>
+    <title>profile</title>
     <style>
         body {
             background: linear-gradient(135deg, #667eea 0%, #f17a88 100%);
@@ -250,6 +250,15 @@
         </div>
     </div>
 
+    <div class="pain-log">
+        <h2>บันทึกอาการปวดที่ผ่านมา</h2>
+        <ul>
+            {% for log in pain_logs %}
+                <li><strong>{{ log.created_at.strftime('%d-%m-%Y %H:%M') }}</strong>: {{ log.pain_log }}</li>
+            {% endfor %}
+        </ul>
+    </div>
+    
     <script>
         function openNav() {
             document.getElementById("mySidebar").style.left = "0";
