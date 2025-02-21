@@ -41,7 +41,7 @@ def login():
         user = User.query.filter_by(username=form.username.data).first()
         if user and check_password_hash(user.password, form.password.data):
             session['user_id'] = user.id
-            return redirect(url_for('choose_character'))
+            return redirect(url_for('profile'))  # เปลี่ยนเส้นทางไปยังหน้าโปรไฟล์
         else:
             flash('Login Unsuccessful. Please check username and password', 'danger')
     return render_template('login.html', form=form)
@@ -62,18 +62,7 @@ def register():
             return redirect(url_for('login'))
     return render_template('register.html', form=form)
 
-@app.route('/choose_character', methods=['GET', 'POST'])
-def choose_character():
-    form = CharacterForm()
-    if form.validate_on_submit():
-        user_id = session.get('user_id')
-        if user_id:
-            user = User.query.get(user_id)
-            user.character = form.character.data
-            db.session.commit()
-            flash('Character selected successfully!', 'success')
-            return redirect(url_for('profile'))
-    return render_template('choose_character.html', form=form)
+
 
 from datetime import datetime, timedelta
 
