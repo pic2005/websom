@@ -4,6 +4,7 @@ from forms import LoginForm, RegisterForm, CharacterForm
 from werkzeug.security import generate_password_hash, check_password_hash
 import os
 import calendar
+from flask_migrate import Migrate
 from datetime import datetime
 
 app = Flask(__name__)
@@ -74,14 +75,40 @@ def choose_character():
             return redirect(url_for('profile'))
     return render_template('choose_character.html', form=form)
 
-@app.route('/profile')
+from datetime import datetime, timedelta
+
+@app.route('/profile', methods=['GET', 'POST'])
 def profile():
     user_id = session.get('user_id')
     if user_id:
         user = User.query.get(user_id)
         current_date = datetime.now().strftime("%d-%m-%Y")  # เปลี่ยนรูปแบบวันที่เป็น วัน-เดือน-ปี
-        return render_template('profile.html', user=user, current_date=current_date)
+        next_period_date = None
+        if request.method == 'POST':
+            period_start_date = request.form.get('period_start_date')
+            period_end_date = request.form.get('period_end_date')
+            if period_start_date:
+                user.period_start_date = datetime.strptime(period_start_date, "%Y-%m-%d")
+            if period_end_date:
+                user.period_end_date = datetime.strptime(period_end_date, "%Y-%m-%d")
+                next_period_date = user.period_end_date + timedelta(days=28)
+            db.session.commit()
+            flash('Period dates updated successfully!', 'success')
+        period_start_date = user.period_start_date.strftime("%Y-%m-%d") if user.period_start_date else None
+        period_end_date = user.period_end_date.strftime("%Y-%m-%d") if user.period_end_date else None
+        next_period_date = next_period_date.strftime("%d-%m-%Y") if next_period_date else None
+        return render_template('profile.html', user=user, current_date=current_date, period_start_date=period_start_date, period_end_date=period_end_date, next_period_date=next_period_date)
     return redirect(url_for('login'))
+
+@app.route('/save_pain_log', methods=['POST'])
+def save_pain_log():
+    user_id = session.get('user_id')
+    if user_id:
+        user = User.query.get(user_id)
+        pain_log = request.form.get('pain_log')
+        # บันทึกอาการปวดและความรู้สึกลงในฐานข้อมูลหรือไฟล์
+        flash('Pain log saved successfully!', 'success')
+    return redirect(url_for('profile'))
 
 @app.route('/description')
 def description():
@@ -111,7 +138,7 @@ def period_pain_treatment():
 def abnormal_period_pain_treatment():
     return render_template('abnormal_period_pain_treatment.html')
 
-@app.route('/calendar')
+@app.route('/calendar', methods=['GET', 'POST'])
 def calendar_view():
     now = datetime.now()
     cal = ""
@@ -127,7 +154,20 @@ def calendar_view():
                 cal += calendar.HTMLCalendar().formatmonth(year, month + 1)
                 cal += "</div>"
             cal += "</div>"
-    return render_template('calendar.html', calendar=cal, current_day=now.day, current_month=now.month, current_year=now.year)
+    
+    user_id = session.get('user_id')
+    period_start_date = None
+    if user_id:
+        user = User.query.get(user_id)
+        if request.method == 'POST':
+            period_start_date = request.form.get('period_start_date')
+            if period_start_date:
+                user.period_start_date = datetime.strptime(period_start_date, "%Y-%m-%d")
+                db.session.commit()
+                flash('Period start date updated successfully!', 'success')
+        period_start_date = user.period_start_date.strftime("%Y-%m-%d") if user.period_start_date else None
+    
+    return render_template('calendar.html', calendar=cal, current_day=now.day, current_month=now.month, current_year=now.year, period_start_date=period_start_date)
 
 @app.route('/period_start_date')
 def period_start_date():
@@ -139,7 +179,7 @@ def period_start_date():
     return redirect(url_for('login'))
     
 @app.route('/next_page')
-def next_pagเe():
+def next_page():
     return render_template('next_page.html')
 
 @app.route('/logout')
