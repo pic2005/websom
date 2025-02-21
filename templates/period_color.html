@@ -1,68 +1,212 @@
 <!DOCTYPE html>
-<html lang="en">
-
+<html lang="th">
 <head>
     <meta charset="UTF-8">
-    <title>สีประจำเดือน</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>สีประจำเดือน - ข้อมูลสุขภาพ</title>
     <style>
-        body {
-            background: #e0f7fa;
+        :root {
+            --primary: #8b5cf6;
+            --primary-light: #a78bfa;
+            --secondary: #f472b6;
+            --text: #1f2937;
+            --background: #f3f4f6;
+        }
+
+        * {
             margin: 0;
-            padding: 20px;
-            font-family: Arial, sans-serif;
-            font-size: 1.3em;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Prompt', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: var(--background);
+            color: var(--text);
+            line-height: 1.6;
         }
 
         .container {
-            max-width: 800px;
-            margin: auto;
+            max-width: 1000px;
+            margin: 2rem auto;
+            padding: 0 1rem;
         }
 
-        .section {
-            background: white;
-            padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            margin-bottom: 20px;
-        }
-
-        h1 {
-            color: #FF6F61;
-        }
-
-        .buttons {
-            display: flex;
-            justify-content: flex-start;
-            margin-top: 20px;
-        }
-
-        .buttons button {
-            padding: 10px 20px;
-            font-size: 1em;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            background-color: #FF6F61;
+        .header {
+            text-align: center;
+            padding: 2rem 0;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
             color: white;
+            border-radius: 1rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
         }
 
-        .buttons button:hover {
-            background-color: #FFB6C1;
+        .header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .header p {
+            font-size: 1.1rem;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0 1rem;
+        }
+
+        .color-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+            padding: 1rem;
+        }
+
+        .color-card {
+            background: white;
+            border-radius: 1rem;
+            overflow: hidden;
+            transition: transform 0.2s;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        }
+
+        .color-card:hover {
+            transform: translateY(-4px);
+        }
+
+        .color-strip {
+            height: 8px;
+            width: 100%;
+        }
+
+        .color-content {
+            padding: 1.5rem;
+        }
+
+        .color-content h2 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: var(--primary);
+        }
+
+        .color-content p {
+            color: var(--text);
+            font-size: 1rem;
+        }
+
+        .warning {
+            background: #fee2e2;
+            border-radius: 1rem;
+            padding: 1.5rem;
+            margin: 2rem 1rem;
+            border-left: 4px solid #ef4444;
+        }
+
+        .button {
+            display: inline-block;
+            padding: 0.75rem 1.5rem;
+            background: var(--primary);
+            color: white;
+            text-decoration: none;
+            border-radius: 0.5rem;
+            transition: background-color 0.2s;
+            border: none;
+            cursor: pointer;
+            font-size: 1rem;
+            margin: 1rem;
+        }
+
+        .button:hover {
+            background: var(--primary-light);
+        }
+
+        .footer {
+            text-align: center;
+            padding: 2rem;
+        }
+
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 2rem;
+            }
+            
+            .color-grid {
+                grid-template-columns: 1fr;
+            }
         }
     </style>
 </head>
-
 <body>
     <div class="container">
-        <div class="section">
+        <header class="header">
             <h1>สีประจำเดือน</h1>
-            <p>เนื้อหาเกี่ยวกับสีประจำเดือน...</p>
+            <p>สีของประจำเดือนสามารถบ่งบอกถึงสุขภาพของคุณได้ สีที่แตกต่างกันอาจบ่งบอกถึงภาวะสุขภาพที่แตกต่างกัน</p>
+        </header>
+
+        <div class="color-grid">
+            <div class="color-card">
+                <div class="color-strip" style="background: #ff0000;"></div>
+                <div class="color-content">
+                    <h2>สีแดงสด</h2>
+                    <p>สีแดงสดมักบ่งบอกถึงประจำเดือนที่มีสุขภาพดีและเป็นปกติ</p>
+                </div>
+            </div>
+
+            <div class="color-card">
+                <div class="color-strip" style="background: #8b0000;"></div>
+                <div class="color-content">
+                    <h2>สีแดงเข้ม</h2>
+                    <p>สีแดงเข้มอาจบ่งบอกถึงเลือดที่มีการสะสมในมดลูกเป็นเวลานานก่อนที่จะถูกขับออกมา</p>
+                </div>
+            </div>
+
+            <div class="color-card">
+                <div class="color-strip" style="background: #a52a2a;"></div>
+                <div class="color-content">
+                    <h2>สีน้ำตาล</h2>
+                    <p>สีน้ำตาลมักบ่งบอกถึงเลือดเก่าที่ถูกขับออกมาจากร่างกาย</p>
+                </div>
+            </div>
+
+            <div class="color-card">
+                <div class="color-strip" style="background: #ffc0cb;"></div>
+                <div class="color-content">
+                    <h2>สีชมพู</h2>
+                    <p>สีชมพูอาจบ่งบอกถึงระดับฮอร์โมนเอสโตรเจนที่ต่ำ หรืออาจเกิดจากการผสมของเลือดกับสารคัดหลั่งอื่น ๆ</p>
+                </div>
+            </div>
+
+            <div class="color-card">
+                <div class="color-strip" style="background: #ffa500;"></div>
+                <div class="color-content">
+                    <h2>สีส้ม</h2>
+                    <p>สีส้มอาจบ่งบอกถึงการติดเชื้อหรือการผสมของเลือดกับสารคัดหลั่งอื่น ๆ</p>
+                </div>
+            </div>
+
+            <div class="color-card">
+                <div class="color-strip" style="background: #808080;"></div>
+                <div class="color-content">
+                    <h2>สีเทาหรือสีเขียว</h2>
+                    <p>สีเทาหรือสีเขียวอาจบ่งบอกถึงการติดเชื้อแบคทีเรียหรือการติดเชื้อทางเพศสัมพันธ์ ควรปรึกษาแพทย์ทันทีหากพบสีนี้</p>
+                </div>
+            </div>
+
+            <div class="color-card">
+                <div class="color-strip" style="background: #000000;"></div>
+                <div class="color-content">
+                    <h2>สีดำ</h2>
+                    <p>สีดำอาจบ่งบอกถึงเลือดเก่าที่ถูกขับออกมาจากร่างกายเป็นเวลานาน แต่หากมีอาการอื่นร่วมด้วยควรปรึกษาแพทย์</p>
+                </div>
+            </div>
         </div>
 
-        <div class="buttons">
-            <button onclick="location.href='{{ url_for('profile') }}'">ย้อนกลับ</button>
+        <div class="warning">
+            <p>หากคุณพบว่าสีของประจำเดือนของคุณมีความผิดปกติหรือมีอาการอื่น ๆ ร่วมด้วย ควรปรึกษาแพทย์เพื่อรับคำแนะนำและการรักษาที่เหมาะสม</p>
+        </div>
+
+        <div class="footer">
+            <button class="button" onclick="location.href='{{ url_for('profile') }}'">ย้อนกลับ</button>
         </div>
     </div>
 </body>
-
 </html>
