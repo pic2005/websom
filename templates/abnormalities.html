@@ -6,28 +6,32 @@
     <title>ความผิดปกติ</title>
     <style>
         body {
-            background: #e0f7fa;
+            background: linear-gradient(135deg, #667eea 0%, #f17a88 100%);
             margin: 0;
-            padding: 20px;
-            font-family: Arial, sans-serif;
-            font-size: 1.3em;
+            padding: 0;
+            display: flex;
+            align-items: flex-start;
+            justify-content: center;
+            min-height: 100vh;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
 
         .container {
             max-width: 800px;
             margin: auto;
-        }
-
-        .section {
             background: white;
             padding: 20px;
             border-radius: 10px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            margin-bottom: 20px;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            backdrop-filter: blur(10px);
         }
 
         h1 {
-            color: #FF6F61;
+            color: #764ba2;
         }
 
         .buttons {
@@ -42,12 +46,38 @@
             border: none;
             border-radius: 5px;
             cursor: pointer;
-            background-color: #FF6F61;
+            background-color: #333;
             color: white;
         }
 
         .buttons button:hover {
-            background-color: #FFB6C1;
+            background-color: #555;
+        }
+
+        .section {
+            background: rgba(255, 255, 255, 0.95);
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px;
+            backdrop-filter: blur(10px);
+        }
+
+        h2 {
+            color: #764ba2;
+        }
+
+        ol {
+            text-align: left;
+            padding-left: 20px;
+        }
+
+        ol li {
+            margin-bottom: 10px;
+        }
+
+        p {
+            text-align: left;
         }
     </style>
 </head>
@@ -56,7 +86,16 @@
     <div class="container">
         <div class="section">
             <h1>ความผิดปกติ</h1>
-            <p>เนื้อหาเกี่ยวกับความผิดปกติ...</p>
+            <p>ความผิดปกติของประจำเดือนสามารถเกิดขึ้นได้จากหลายสาเหตุ เช่น การเปลี่ยนแปลงของฮอร์โมน, ภาวะเยื่อบุโพรงมดลูกเจริญผิดที่, เนื้องอกในมดลูก, หรือภาวะอื่น ๆ ที่เกี่ยวข้องกับระบบสืบพันธุ์</p>
+            <h2>ประเภทของความผิดปกติ</h2>
+            <ol>
+                <li><strong>ประจำเดือนมามากเกินไป (Menorrhagia):</strong> เป็นภาวะที่มีการเสียเลือดมากเกินไปในช่วงประจำเดือน ซึ่งอาจทำให้เกิดภาวะโลหิตจางได้</li>
+                <li><strong>ประจำเดือนมาน้อยเกินไป (Hypomenorrhea):</strong> เป็นภาวะที่มีการเสียเลือดน้อยเกินไปในช่วงประจำเดือน</li>
+                <li><strong>ประจำเดือนมาผิดปกติ (Irregular Menstruation):</strong> เป็นภาวะที่รอบประจำเดือนมาไม่สม่ำเสมอ อาจมาช้าหรือมาเร็วเกินไป</li>
+                <li><strong>ไม่มีประจำเดือน (Amenorrhea):</strong> เป็นภาวะที่ไม่มีประจำเดือนมาเป็นเวลานาน ซึ่งอาจเกิดจากการตั้งครรภ์, ภาวะเครียด, หรือปัญหาสุขภาพอื่น ๆ</li>
+                <li><strong>ปวดประจำเดือน (Dysmenorrhea):</strong> เป็นภาวะที่มีอาการปวดท้องอย่างรุนแรงในช่วงประจำเดือน</li>
+            </ol>
+            <p>หากคุณมีอาการผิดปกติของประจำเดือน ควรปรึกษาแพทย์เพื่อรับการวินิจฉัยและการรักษาที่เหมาะสม</p>
         </div>
 
         <div class="buttons">
