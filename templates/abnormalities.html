@@ -3,103 +3,161 @@
 
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ความผิดปกติ</title>
     <style>
-        body {
-            background: linear-gradient(135deg, #667eea 0%, #f17a88 100%);
+        :root {
+            --primary: #764ba2;
+            --secondary: #f17a88;
+            --text: #2d3748;
+            --background: #f7fafc;
+        }
+
+        * {
             margin: 0;
             padding: 0;
-            display: flex;
-            align-items: flex-start;
-            justify-content: center;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Prompt', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #f17a88 100%);
+            color: var(--text);
+            line-height: 1.7;
             min-height: 100vh;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            padding: 2rem 1rem;
         }
 
         .container {
             max-width: 800px;
-            margin: auto;
+            margin: 0 auto;
             background: white;
-            padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            text-align: center;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
         }
 
-        h1 {
-            color: #764ba2;
-        }
-
-        .buttons {
-            display: flex;
-            justify-content: flex-start;
-            margin-top: 20px;
-        }
-
-        .buttons button {
-            padding: 10px 20px;
-            font-size: 1em;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            background-color: #333;
+        .header {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
             color: white;
+            padding: 2.5rem 2rem;
+            text-align: center;
         }
 
-        .buttons button:hover {
-            background-color: #555;
+        .header h1 {
+            font-size: 2.2rem;
+            margin-bottom: 1rem;
         }
 
-        .section {
-            background: rgba(255, 255, 255, 0.95);
-            padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
-            margin-bottom: 20px;
-            backdrop-filter: blur(10px);
+        .header p {
+            font-size: 1.1rem;
+            opacity: 0.9;
+            max-width: 600px;
+            margin: 0 auto;
         }
 
-        h2 {
-            color: #764ba2;
+        .content {
+            padding: 2rem;
         }
 
-        ol {
-            text-align: left;
-            padding-left: 20px;
+        .info-card {
+            background: white;
+            border-radius: 15px;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+            border-left: 4px solid var(--primary);
+            transition: transform 0.2s ease;
         }
 
-        ol li {
-            margin-bottom: 10px;
+        .info-card:hover {
+            transform: translateY(-2px);
         }
 
-        p {
-            text-align: left;
+        .info-card h2 {
+            color: var(--primary);
+            font-size: 1.4rem;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+        }
+
+        .info-card h2::before {
+            content: '•';
+            color: var(--secondary);
+            margin-right: 0.5rem;
+            font-size: 1.6rem;
+        }
+
+        .info-card p {
+            color: var(--text);
+            font-size: 1.1rem;
+            line-height: 1.7;
+        }
+
+        .button {
+            display: inline-block;
+            padding: 0.8rem 2rem;
+            background: var(--primary);
+            color: white;
+            text-decoration: none;
+            border-radius: 8px;
+            border: none;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: all 0.2s ease;
+            margin: 1rem 0;
+        }
+
+        .button:hover {
+            background: var(--secondary);
+            transform: translateY(-1px);
+        }
+
+        .footer {
+            text-align: center;
+            padding: 2rem;
+            background: var(--background);
         }
     </style>
 </head>
 
 <body>
     <div class="container">
-        <div class="section">
+        <header class="header">
             <h1>ความผิดปกติ</h1>
             <p>ความผิดปกติของประจำเดือนสามารถเกิดขึ้นได้จากหลายสาเหตุ เช่น การเปลี่ยนแปลงของฮอร์โมน, ภาวะเยื่อบุโพรงมดลูกเจริญผิดที่, เนื้องอกในมดลูก, หรือภาวะอื่น ๆ ที่เกี่ยวข้องกับระบบสืบพันธุ์</p>
-            <h2>ประเภทของความผิดปกติ</h2>
-            <ol>
-                <li><strong>ประจำเดือนมามากเกินไป (Menorrhagia):</strong> เป็นภาวะที่มีการเสียเลือดมากเกินไปในช่วงประจำเดือน ซึ่งอาจทำให้เกิดภาวะโลหิตจางได้</li>
-                <li><strong>ประจำเดือนมาน้อยเกินไป (Hypomenorrhea):</strong> เป็นภาวะที่มีการเสียเลือดน้อยเกินไปในช่วงประจำเดือน</li>
-                <li><strong>ประจำเดือนมาผิดปกติ (Irregular Menstruation):</strong> เป็นภาวะที่รอบประจำเดือนมาไม่สม่ำเสมอ อาจมาช้าหรือมาเร็วเกินไป</li>
-                <li><strong>ไม่มีประจำเดือน (Amenorrhea):</strong> เป็นภาวะที่ไม่มีประจำเดือนมาเป็นเวลานาน ซึ่งอาจเกิดจากการตั้งครรภ์, ภาวะเครียด, หรือปัญหาสุขภาพอื่น ๆ</li>
-                <li><strong>ปวดประจำเดือน (Dysmenorrhea):</strong> เป็นภาวะที่มีอาการปวดท้องอย่างรุนแรงในช่วงประจำเดือน</li>
-            </ol>
-            <p>หากคุณมีอาการผิดปกติของประจำเดือน ควรปรึกษาแพทย์เพื่อรับการวินิจฉัยและการรักษาที่เหมาะสม</p>
+        </header>
+
+        <div class="content">
+            <div class="info-card">
+                <h2>ประจำเดือนมามากเกินไป (Menorrhagia)</h2>
+                <p>เป็นภาวะที่มีการเสียเลือดมากเกินไปในช่วงประจำเดือน ซึ่งอาจทำให้เกิดภาวะโลหิตจางได้</p>
+            </div>
+
+            <div class="info-card">
+                <h2>ประจำเดือนมาน้อยเกินไป (Hypomenorrhea)</h2>
+                <p>เป็นภาวะที่มีการเสียเลือดน้อยเกินไปในช่วงประจำเดือน</p>
+            </div>
+
+            <div class="info-card">
+                <h2>ประจำเดือนมาผิดปกติ (Irregular Menstruation)</h2>
+                <p>เป็นภาวะที่รอบประจำเดือนมาไม่สม่ำเสมอ อาจมาช้าหรือมาเร็วเกินไป</p>
+            </div>
+
+            <div class="info-card">
+                <h2>ไม่มีประจำเดือน (Amenorrhea)</h2>
+                <p>เป็นภาวะที่ไม่มีประจำเดือนมาเป็นเวลานาน ซึ่งอาจเกิดจากการตั้งครรภ์, ภาวะเครียด, หรือปัญหาสุขภาพอื่น ๆ</p>
+            </div>
+
+            <div class="info-card">
+                <h2>ปวดประจำเดือน (Dysmenorrhea)</h2>
+                <p>เป็นภาวะที่มีอาการปวดท้องอย่างรุนแรงในช่วงประจำเดือน</p>
+            </div>
         </div>
 
-        <div class="buttons">
-            <button onclick="location.href='{{ url_for('profile') }}'">ย้อนกลับ</button>
+        <div class="footer">
+            <button class="button" onclick="location.href='{{ url_for('profile') }}'">ย้อนกลับ</button>
         </div>
     </div>
 </body>

@@ -1,111 +1,157 @@
 <!DOCTYPE html>
-<html lang="en">
-
+<html lang="th">
 <head>
     <meta charset="UTF-8">
-    <title>คำธิบาย</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>การนับประจำเดือน</title>
     <style>
-        body {
-            background: linear-gradient(135deg, #667eea 0%, #f17a88 100%);
+        :root {
+            --primary: #764ba2;
+            --secondary: #f17a88;
+            --text: #2d3748;
+            --background: #f7fafc;
+        }
+
+        * {
             margin: 0;
-            padding: 20px;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            display: flex;
-            align-items: flex-start;
-            justify-content: center;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Prompt', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #f17a88 100%);
+            color: var(--text);
+            line-height: 1.7;
             min-height: 100vh;
+            padding: 2rem 1rem;
         }
 
         .container {
             max-width: 800px;
-            margin: auto;
+            margin: 0 auto;
             background: white;
-            padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            text-align: center;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
         }
 
-        h1 {
-            color: #764ba2;
-        }
-
-        .buttons {
-            display: flex;
-            justify-content: center;
-            margin-top: 20px;
-        }
-
-        .buttons button {
-            padding: 10px 20px;
-            font-size: 1em;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            background-color: #333;
+        .header {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
             color: white;
+            padding: 2.5rem 2rem;
+            text-align: center;
         }
 
-        .buttons button:hover {
-            background-color: #555;
+        .header h1 {
+            font-size: 2.2rem;
+            margin-bottom: 1rem;
         }
 
-        .instructions {
-            line-height: 1.6;
-            text-align: left;
+        .header p {
+            font-size: 1.1rem;
+            opacity: 0.9;
+            max-width: 600px;
+            margin: 0 auto;
         }
 
-        .instructions p {
-            margin-bottom: 10px;
+        .content {
+            padding: 2rem;
         }
 
-        .instructions ol {
-            padding-left: 20px;
+        .info-card {
+            background: white;
+            border-radius: 15px;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+            border-left: 4px solid var(--primary);
+            transition: transform 0.2s ease;
         }
 
-        .instructions ol li {
-            margin-bottom: 10px;
+        .info-card:hover {
+            transform: translateY(-2px);
         }
 
-        .instructions ul {
-            padding-left: 20px;
+        .info-card h2 {
+            color: var(--primary);
+            font-size: 1.4rem;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
         }
 
-        .instructions ul li {
-            margin-bottom: 10px;
+        .info-card h2::before {
+            content: '•';
+            color: var(--secondary);
+            margin-right: 0.5rem;
+            font-size: 1.6rem;
+        }
+
+        .info-card p {
+            color: var(--text);
+            font-size: 1.1rem;
+            line-height: 1.7;
+        }
+
+        .button {
+            display: inline-block;
+            padding: 0.8rem 2rem;
+            background: var(--primary);
+            color: white;
+            text-decoration: none;
+            border-radius: 8px;
+            border: none;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: all 0.2s ease;
+            margin: 1rem 0;
+        }
+
+        .button:hover {
+            background: var(--secondary);
+            transform: translateY(-1px);
+        }
+
+        .footer {
+            text-align: center;
+            padding: 2rem;
+            background: var(--background);
         }
     </style>
 </head>
-
 <body>
     <div class="container">
-        <div class="section">
+        <header class="header">
             <h1>การนับประจำเดือน</h1>
-            <div class="instructions">
-                <ol>
-                    <li>เริ่มต้นนับวันแรกของประจำเดือน: วันที่คุณมีประจำเดือนวันแรกนับเป็นวันแรกของรอบประจำเดือน</li>
-                    <li>นับจำนวนวันทั้งหมดในรอบประจำเดือน: นับจนกว่าคุณจะมีประจำเดือนครั้งต่อไป วันสุดท้ายของรอบก็คือวันที่ก่อนวันแรกของประจำเดือนครั้งใหม่</li>
-                </ol>
-                <p>ตัวอย่างเช่น:</p>
-                <ul>
-                    <li>วันที่ 1 มีประจำเดือน: เริ่มนับเป็นวันแรก</li>
-                    <li>มีประจำเดือนครั้งถัดไปวันที่ 28: รอบประจำเดือนจะอยู่ระหว่างวันที่ 1 ถึงวันที่ 27 (28 วัน)</li>
-                </ul>
-                <p>บันทึกข้อมูล: จดบันทึกวันที่เริ่มต้นและสิ้นสุดของประจำเดือนทุกครั้งเพื่อช่วยในการติดตามรอบประจำเดือนของคุณ</p>
-                <h2>คำแนะนำเพิ่มเติม</h2>
-                <p>การนับประจำเดือนสามารถช่วยให้คุณทราบถึงรอบประจำเดือนของคุณและสามารถวางแผนกิจกรรมต่าง ๆ ได้อย่างมีประสิทธิภาพ นอกจากนี้ยังสามารถช่วยให้คุณทราบถึงความผิดปกติของรอบประจำเดือนและปรึกษาแพทย์ได้ทันทีหากมีความผิดปกติ</p>
-                <p>หากคุณมีคำถามหรือข้อสงสัยเกี่ยวกับการนับประจำเดือน ควรปรึกษาแพทย์หรือผู้เชี่ยวชาญเพื่อขอคำแนะนำเพิ่มเติม</p>
+            <p>การติดตามรอบประจำเดือนเป็นสิ่งสำคัญที่ช่วยให้คุณเข้าใจสุขภาพของคุณได้ดีขึ้น</p>
+        </header>
+
+        <div class="content">
+            <div class="info-card">
+                <h2>เริ่มต้นนับวันแรกของประจำเดือน</h2>
+                <p>วันที่คุณมีประจำเดือนวันแรกนับเป็นวันแรกของรอบประจำเดือน</p>
+            </div>
+
+            <div class="info-card">
+                <h2>นับจำนวนวันทั้งหมด</h2>
+                <p>นับจนกว่าคุณจะมีประจำเดือนครั้งต่อไป วันสุดท้ายของรอบคือวันที่ก่อนวันแรกของรอบใหม่</p>
+            </div>
+
+            <div class="info-card">
+                <h2>ตัวอย่าง</h2>
+                <p>ถ้าคุณเริ่มมีประจำเดือนวันที่ 1 และครั้งถัดไปมาวันที่ 28 รอบของคุณคือ 27 วัน</p>
+            </div>
+
+            <div class="info-card">
+                <h2>ทำไมการนับรอบประจำเดือนจึงสำคัญ?</h2>
+                <p>การติดตามรอบของคุณช่วยให้คุณทราบแนวโน้มของรอบประจำเดือน และช่วยให้คุณสังเกตความผิดปกติได้</p>
             </div>
         </div>
 
-        <div class="buttons">
-            <button onclick="location.href='{{ url_for('profile') }}'">กลับไปหน้าหลัก</button>
+        <div class="footer">
+            <button class="button" onclick="location.href='{{ url_for('profile') }}'">ย้อนกลับ</button>
         </div>
     </div>
 </body>
-
 </html>
