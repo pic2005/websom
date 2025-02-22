@@ -3,164 +3,67 @@
 {% block title %}วิธีรักษาการปวดประจำเดือนที่มาผิดปกติ{% endblock %}
 
 {% block body %}
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>วิธีรักษาการปวดประจำเดือนที่มาผิดปกติ</title>
-    <style>
-        :root {
-            --primary: #764ba2;
-            --secondary: #f17a88;
-            --text: #2d3748;
-            --background: #f7fafc;
-        }
+<div class="container mt-5">
+    <header class="text-center mb-5">
+        <h1 class="display-4 fw-bold text-white">วิธีรักษาการปวดประจำเดือนที่มาผิดปกติ</h1>
+        <p class="lead text-white">การปวดประจำเดือนที่มาผิดปกติอาจเกิดจากหลายสาเหตุ เช่น ภาวะเยื่อบุโพรงมดลูกเจริญผิดที่ (Endometriosis), เนื้องอกในมดลูก (Fibroids), หรือภาวะอื่น ๆ ที่เกี่ยวข้องกับระบบสืบพันธุ์</p>
+    </header>
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: 'Prompt', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-            background: linear-gradient(135deg, #667eea 0%, #f17a88 100%);
-            color: var(--text);
-            line-height: 1.7;
-            min-height: 100vh;
-            padding: 2rem 1rem;
-        }
-
-        .container {
-            max-width: 800px;
-            margin: 0 auto;
-            background: white;
-            border-radius: 20px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-            overflow: hidden;
-        }
-
-        .header {
-            background: linear-gradient(135deg, var(--primary), var(--secondary));
-            color: white;
-            padding: 2.5rem 2rem;
-            text-align: center;
-        }
-
-        .header h1 {
-            font-size: 2.2rem;
-            margin-bottom: 1rem;
-        }
-
-        .header p {
-            font-size: 1.1rem;
-            opacity: 0.9;
-            max-width: 600px;
-            margin: 0 auto;
-        }
-
-        .content {
-            padding: 2rem;
-        }
-
-        .info-card {
-            background: white;
-            border-radius: 15px;
-            padding: 1.5rem;
-            margin-bottom: 1.5rem;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
-            border-left: 4px solid var(--primary);
-            transition: transform 0.2s ease;
-        }
-
-        .info-card:hover {
-            transform: translateY(-2px);
-        }
-
-        .info-card h2 {
-            color: var(--primary);
-            font-size: 1.4rem;
-            margin-bottom: 1rem;
-            display: flex;
-            align-items: center;
-        }
-
-        .info-card h2::before {
-            content: '•';
-            color: var(--secondary);
-            margin-right: 0.5rem;
-            font-size: 1.6rem;
-        }
-
-        .info-card p {
-            color: var(--text);
-            font-size: 1.1rem;
-            line-height: 1.7;
-        }
-
-        .button {
-            display: inline-block;
-            padding: 0.8rem 2rem;
-            background: var(--primary);
-            color: white;
-            text-decoration: none;
-            border-radius: 8px;
-            border: none;
-            cursor: pointer;
-            font-size: 1rem;
-            transition: all 0.2s ease;
-            margin: 1rem 0;
-        }
-
-        .button:hover {
-            background: var(--secondary);
-            transform: translateY(-1px);
-        }
-
-        .footer {
-            text-align: center;
-            padding: 2rem;
-            background: var(--background);
-        }
-    </style>
-</head>
-
-<body>
-    <div class="container">
-        <header class="header">
-            <h1>วิธีรักษาการปวดประจำเดือนที่มาผิดปกติ</h1>
-            <p>การปวดประจำเดือนที่มาผิดปกติอาจเกิดจากหลายสาเหตุ เช่น ภาวะเยื่อบุโพรงมดลูกเจริญผิดที่ (Endometriosis), เนื้องอกในมดลูก (Fibroids), หรือภาวะอื่น ๆ ที่เกี่ยวข้องกับระบบสืบพันธุ์</p>
-        </header>
-
-        <div class="content">
-            <div class="info-card">
-                <h2>การใช้ยา</h2>
-                <p>ยาแก้ปวด เช่น ไอบูโพรเฟน (Ibuprofen) หรือยาพาราเซตามอล (Paracetamol) สามารถช่วยบรรเทาอาการปวดได้ นอกจากนี้ยังมียาคุมกำเนิดที่สามารถช่วยควบคุมรอบประจำเดือนและลดอาการปวดได้</p>
-            </div>
-
-            <div class="info-card">
-                <h2>การรักษาด้วยฮอร์โมน</h2>
-                <p>การใช้ฮอร์โมน เช่น ฮอร์โมนโปรเจสเตอโรน (Progesterone) หรือฮอร์โมนเอสโตรเจน (Estrogen) สามารถช่วยควบคุมรอบประจำเดือนและลดอาการปวดได้</p>
-            </div>
-
-            <div class="info-card">
-                <h2>การผ่าตัด</h2>
-                <p>ในกรณีที่มีภาวะเยื่อบุโพรงมดลูกเจริญผิดที่หรือเนื้องอกในมดลูก การผ่าตัดอาจเป็นทางเลือกในการรักษา</p>
-            </div>
-
-            <div class="info-card">
-                <h2>การปรับเปลี่ยนพฤติกรรม</h2>
-                <p>การออกกำลังกายอย่างสม่ำเสมอ การรับประทานอาหารที่มีประโยชน์ และการพักผ่อนอย่างเพียงพอสามารถช่วยลดอาการปวดประจำเดือนได้</p>
-            </div>
-
-            <div class="info-card">
-                <h2>การใช้วิธีธรรมชาติ</h2>
-                <p>การใช้สมุนไพร เช่น ขิง หรือการใช้ความร้อน เช่น การใช้ถุงน้ำร้อนประคบที่ท้องล่าง สามารถช่วยบรรเทาอาการปวดได้</p>
+    <div class="row g-4">
+        <!-- การใช้ยา -->
+        <div class="col-md-6">
+            <div class="card h-100 shadow-sm border-0">
+                <div class="card-body">
+                    <h2 class="card-title text-primary">การใช้ยา</h2>
+                    <p class="card-text">ยาแก้ปวด เช่น ไอบูโพรเฟน (Ibuprofen) หรือยาพาราเซตามอล (Paracetamol) สามารถช่วยบรรเทาอาการปวดได้ นอกจากนี้ยังมียาคุมกำเนิดที่สามารถช่วยควบคุมรอบประจำเดือนและลดอาการปวดได้</p>
+                </div>
             </div>
         </div>
 
-        <div class="footer">
-            <button class="button" onclick="location.href='{{ url_for('profile') }}'">ย้อนกลับ</button>
+        <!-- การรักษาด้วยฮอร์โมน -->
+        <div class="col-md-6">
+            <div class="card h-100 shadow-sm border-0">
+                <div class="card-body">
+                    <h2 class="card-title text-primary">การรักษาด้วยฮอร์โมน</h2>
+                    <p class="card-text">การใช้ฮอร์โมน เช่น ฮอร์โมนโปรเจสเตอโรน (Progesterone) หรือฮอร์โมนเอสโตรเจน (Estrogen) สามารถช่วยควบคุมรอบประจำเดือนและลดอาการปวดได้</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- การผ่าตัด -->
+        <div class="col-md-6">
+            <div class="card h-100 shadow-sm border-0">
+                <div class="card-body">
+                    <h2 class="card-title text-primary">การผ่าตัด</h2>
+                    <p class="card-text">ในกรณีที่มีภาวะเยื่อบุโพรงมดลูกเจริญผิดที่หรือเนื้องอกในมดลูก การผ่าตัดอาจเป็นทางเลือกในการรักษา</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- การปรับเปลี่ยนพฤติกรรม -->
+        <div class="col-md-6">
+            <div class="card h-100 shadow-sm border-0">
+                <div class="card-body">
+                    <h2 class="card-title text-primary">การปรับเปลี่ยนพฤติกรรม</h2>
+                    <p class="card-text">การออกกำลังกายอย่างสม่ำเสมอ การรับประทานอาหารที่มีประโยชน์ และการพักผ่อนอย่างเพียงพอสามารถช่วยลดอาการปวดประจำเดือนได้</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- การใช้วิธีธรรมชาติ -->
+        <div class="col-md-6">
+            <div class="card h-100 shadow-sm border-0">
+                <div class="card-body">
+                    <h2 class="card-title text-primary">การใช้วิธีธรรมชาติ</h2>
+                    <p class="card-text">การใช้สมุนไพร เช่น ขิง หรือการใช้ความร้อน เช่น การใช้ถุงน้ำร้อนประคบที่ท้องล่าง สามารถช่วยบรรเทาอาการปวดได้</p>
+                </div>
+            </div>
         </div>
     </div>
-</body>
 
-{% endblock %}>
+    <!-- ปุ่มย้อนกลับ -->
+    <div class="text-center mt-5">
+        <a href="{{ url_for('profile') }}" class="btn btn-primary btn-lg">ย้อนกลับ</a>
+    </div>
+</div>
+{% endblock %}
