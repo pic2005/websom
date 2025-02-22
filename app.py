@@ -1,30 +1,38 @@
 from flask import Flask, render_template, redirect, url_for, request, flash, session
 from flask_sqlalchemy import SQLAlchemy
-from forms import LoginForm, RegisterForm, CharacterForm
+from forms import LoginForm, RegisterForm, PeriodAndPainLogForm
+from flask_wtf import FlaskForm
 from werkzeug.security import generate_password_hash, check_password_hash
 import os
 import calendar
 from flask_migrate import Migrate
 from datetime import datetime
+from models import db
+from models.user import User
+from models.pain_log import PainLog
+from flask import Flask, request, redirect, url_for, flash, session
+
+
+
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'your_secret_key'
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///../instance/database.db'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
-from models import db
 db.init_app(app)
+with app.app_context():
+    db.create_all()
 
 # Ensure the templates folder is correctly referenced
 app.template_folder = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'templates')
 
 # Import models
-from models.user import User
-from models.data import Tag
 
-# Create database tables
-with app.app_context():
-    db.create_all()
+
+# # Create database tables
+# with app.app_context():
+#     db.create_all()
 
 @app.route('/', methods=['GET', 'POST'])
 def home():
@@ -89,14 +97,73 @@ def profile():
         return render_template('profile.html', user=user, current_date=current_date, period_start_date=period_start_date, period_end_date=period_end_date, next_period_date=next_period_date)
     return redirect(url_for('login'))
 
-@app.route('/save_pain_log', methods=['POST'])
-def save_pain_log():
+
+
+# @app.route('/save_pain_log', methods=['POST'])
+# def save_pain_log():
+#     user_id = session.get('user_id')
+#     if user_id:
+#         pain_level = request.form.get('pain_level')
+#         pain_note = request.form.get('pain_note')
+
+#         if pain_level:
+#             new_pain_log = PainLog(
+#                 user_id=user_id,
+#                 pain_level=pain_level,
+#                 pain_note=pain_note
+#             )
+#             db.session.add(new_pain_log)
+#             db.session.commit()
+#             flash('บันทึกอาการสำเร็จ!', 'success')
+#         else:
+#             flash('กรุณาเลือกระดับความเจ็บปวด', 'danger')
+#     else:
+#         flash('กรุณาเข้าสู่ระบบก่อนบันทึกอาการ', 'danger')
+#     return redirect(url_for('profile'))
+
+# @app.route('/pain_log_history')
+# def pain_log_history():
+#     user_id = session.get('user_id')
+#     if user_id:
+#         user = User.query.get(user_id)
+#         pain_logs = PainLog.query.filter_by(user_id=user_id).order_by(PainLog.log_date.desc()).all()
+#         return render_template('pain_log_history.html', pain_logs=pain_logs)
+#     return redirect(url_for('login'))
+
+@app.route('/save_period_and_pain_log', methods=['POST'])
+def save_period_and_pain_log():
     user_id = session.get('user_id')
     if user_id:
         user = User.query.get(user_id)
-        pain_log = request.form.get('pain_log')
-        # บันทึกอาการปวดและความรู้สึกลงในฐานข้อมูลหรือไฟล์
-        flash('Pain log saved successfully!', 'success')
+
+        # บันทึกข้อมูลประจำเดือน
+        period_start_date = request.form.get('period_start_date')
+        period_end_date = request.form.get('period_end_date')
+
+        if period_start_date:
+            user.period_start_date = datetime.strptime(period_start_date, "%Y-%m-%d")
+        if period_end_date:
+            user.period_end_date = datetime.strptime(period_end_date, "%Y-%m-%d")
+            next_period_date = user.period_end_date + timedelta(days=28)
+        db.session.commit()
+
+        # บันทึกอาการเจ็บปวด
+        pain_level = request.form.get('pain_level')
+        pain_note = request.form.get('pain_note')
+
+        if pain_level:
+            new_pain_log = PainLog(
+                user_id=user_id,
+                pain_level=pain_level,
+                pain_note=pain_note
+            )
+            db.session.add(new_pain_log)
+            db.session.commit()
+            flash('บันทึกข้อมูลประจำเดือนและอาการสำเร็จ!', 'success')
+        else:
+            flash('กรุณาเลือกระดับความเจ็บปวด', 'danger')
+    else:
+        flash('กรุณาเข้าสู่ระบบก่อนบันทึกข้อมูล', 'danger')
     return redirect(url_for('profile'))
 
 @app.route('/description')
