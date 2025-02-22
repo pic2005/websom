@@ -77,25 +77,47 @@ from datetime import datetime, timedelta
 @app.route('/profile', methods=['GET', 'POST'])
 def profile():
     user_id = session.get('user_id')
-    if user_id:
-        user = User.query.get(user_id)
-        current_date = datetime.now().strftime("%d-%m-%Y")  # เปลี่ยนรูปแบบวันที่เป็น วัน-เดือน-ปี
-        next_period_date = None
-        if request.method == 'POST':
-            period_start_date = request.form.get('period_start_date')
-            period_end_date = request.form.get('period_end_date')
+    if not user_id:
+        return redirect(url_for('login'))
+
+    user = db.session.get(User, user_id)  # ใช้ Session.get() แทน Query.get()
+    if not user:
+        flash('User not found!', 'error')
+        return redirect(url_for('login'))
+
+    current_date = datetime.now().strftime("%d-%m-%Y")  # รูปแบบวันที่เป็น วัน-เดือน-ปี
+    next_period_date = None
+
+    if request.method == 'POST':
+        period_start_date = request.form.get('period_start_date')
+        period_end_date = request.form.get('period_end_date')
+
+        try:
             if period_start_date:
                 user.period_start_date = datetime.strptime(period_start_date, "%Y-%m-%d")
             if period_end_date:
                 user.period_end_date = datetime.strptime(period_end_date, "%Y-%m-%d")
-                next_period_date = user.period_end_date + timedelta(days=28)
+                next_period_date = user.period_end_date + timedelta(days=28)  # คำนวณวันที่ประจำเดือนรอบถัดไป
+
             db.session.commit()
             flash('Period dates updated successfully!', 'success')
-        period_start_date = user.period_start_date.strftime("%Y-%m-%d") if user.period_start_date else None
-        period_end_date = user.period_end_date.strftime("%Y-%m-%d") if user.period_end_date else None
-        next_period_date = next_period_date.strftime("%d-%m-%Y") if next_period_date else None
-        return render_template('profile.html', user=user, current_date=current_date, period_start_date=period_start_date, period_end_date=period_end_date, next_period_date=next_period_date)
-    return redirect(url_for('login'))
+        except ValueError as e:
+            db.session.rollback()
+            flash(f'Invalid date format: {e}', 'error')
+
+    # จัดรูปแบบวันที่สำหรับแสดงผล
+    period_start_date = user.period_start_date.strftime("%Y-%m-%d") if user.period_start_date else None
+    period_end_date = user.period_end_date.strftime("%Y-%m-%d") if user.period_end_date else None
+    next_period_date = next_period_date.strftime("%d-%m-%Y") if next_period_date else None
+
+    return render_template(
+        'profile.html',
+        user=user,
+        current_date=current_date,
+        period_start_date=period_start_date,
+        period_end_date=period_end_date,
+        next_period_date=next_period_date
+    )
 
 
 
