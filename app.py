@@ -8,8 +8,7 @@ import calendar
 from flask_migrate import Migrate
 from datetime import datetime
 from models import db
-from models.user import User
-from models.pain_log import PainLog
+from models import User,PainLog
 from flask import Flask, request, redirect, url_for, flash, session
 
 
@@ -105,6 +104,9 @@ def profile():
             db.session.rollback()
             flash(f'Invalid date format: {e}', 'error')
 
+    # ดึงประวัติการบันทึกอาการ
+    pain_logs = PainLog.query.filter_by(user_id=user_id).order_by(PainLog.log_date.desc()).all()
+
     # จัดรูปแบบวันที่สำหรับแสดงผล
     period_start_date = user.period_start_date.strftime("%Y-%m-%d") if user.period_start_date else None
     period_end_date = user.period_end_date.strftime("%Y-%m-%d") if user.period_end_date else None
@@ -116,78 +118,65 @@ def profile():
         current_date=current_date,
         period_start_date=period_start_date,
         period_end_date=period_end_date,
-        next_period_date=next_period_date
+        next_period_date=next_period_date,
+        pain_logs=pain_logs  # ส่งข้อมูลประวัติการบันทึกไปยังเทมเพลต
     )
-
-
-
-# @app.route('/save_pain_log', methods=['POST'])
-# def save_pain_log():
-#     user_id = session.get('user_id')
-#     if user_id:
-#         pain_level = request.form.get('pain_level')
-#         pain_note = request.form.get('pain_note')
-
-#         if pain_level:
-#             new_pain_log = PainLog(
-#                 user_id=user_id,
-#                 pain_level=pain_level,
-#                 pain_note=pain_note
-#             )
-#             db.session.add(new_pain_log)
-#             db.session.commit()
-#             flash('บันทึกอาการสำเร็จ!', 'success')
-#         else:
-#             flash('กรุณาเลือกระดับความเจ็บปวด', 'danger')
-#     else:
-#         flash('กรุณาเข้าสู่ระบบก่อนบันทึกอาการ', 'danger')
-#     return redirect(url_for('profile'))
-
-# @app.route('/pain_log_history')
-# def pain_log_history():
-#     user_id = session.get('user_id')
-#     if user_id:
-#         user = User.query.get(user_id)
-#         pain_logs = PainLog.query.filter_by(user_id=user_id).order_by(PainLog.log_date.desc()).all()
-#         return render_template('pain_log_history.html', pain_logs=pain_logs)
-#     return redirect(url_for('login'))
 
 @app.route('/save_period_and_pain_log', methods=['POST'])
 def save_period_and_pain_log():
     user_id = session.get('user_id')
-    if user_id:
-        user = User.query.get(user_id)
+    if not user_id:
+        flash('กรุณาเข้าสู่ระบบก่อนบันทึกข้อมูล', 'danger')
+        return redirect(url_for('profile'))
+
+    user = db.session.get(User, user_id)
+    if not user:
+        flash('ไม่พบผู้ใช้', 'danger')
+        return redirect(url_for('profile'))
+
+    # ดึงข้อมูลจากฟอร์ม
+    period_start_date = request.form.get('period_start_date')
+    period_end_date = request.form.get('period_end_date')
+    pain_level = request.form.get('pain_level')
+    pain_note = request.form.get('pain_note')
+
+    # ตรวจสอบข้อมูล
+    if not period_start_date or not period_end_date:
+        flash('กรุณากรอกวันที่เริ่มและหมดประจำเดือน', 'danger')
+        return redirect(url_for('profile'))
+
+    if not pain_level or int(pain_level) not in range(1, 6):
+        flash('กรุณาเลือกระดับความเจ็บปวดที่ถูกต้อง', 'danger')
+        return redirect(url_for('profile'))
+
+    try:
+        # ตรวจสอบวันที่
+        start_date = datetime.strptime(period_start_date, "%Y-%m-%d")
+        end_date = datetime.strptime(period_end_date, "%Y-%m-%d")
+        if start_date > end_date:
+            flash('วันที่เริ่มประจำเดือนต้องไม่เกินวันที่หมดประจำเดือน', 'danger')
+            return redirect(url_for('profile'))
 
         # บันทึกข้อมูลประจำเดือน
-        period_start_date = request.form.get('period_start_date')
-        period_end_date = request.form.get('period_end_date')
-
-        if period_start_date:
-            user.period_start_date = datetime.strptime(period_start_date, "%Y-%m-%d")
-        if period_end_date:
-            user.period_end_date = datetime.strptime(period_end_date, "%Y-%m-%d")
-            next_period_date = user.period_end_date + timedelta(days=28)
-        db.session.commit()
+        user.period_start_date = start_date
+        user.period_end_date = end_date
 
         # บันทึกอาการเจ็บปวด
-        pain_level = request.form.get('pain_level')
-        pain_note = request.form.get('pain_note')
+        new_pain_log = PainLog(
+            user_id=user_id,
+            pain_level=pain_level,
+            pain_note=pain_note
+        )
+        db.session.add(new_pain_log)
 
-        if pain_level:
-            new_pain_log = PainLog(
-                user_id=user_id,
-                pain_level=pain_level,
-                pain_note=pain_note
-            )
-            db.session.add(new_pain_log)
-            db.session.commit()
-            flash('บันทึกข้อมูลประจำเดือนและอาการสำเร็จ!', 'success')
-        else:
-            flash('กรุณาเลือกระดับความเจ็บปวด', 'danger')
-    else:
-        flash('กรุณาเข้าสู่ระบบก่อนบันทึกข้อมูล', 'danger')
+        db.session.commit()
+        flash('บันทึกข้อมูลประจำเดือนและอาการสำเร็จ!', 'success')
+    except Exception as e:
+        db.session.rollback()
+        flash(f'เกิดข้อผิดพลาดในการบันทึกข้อมูล: {str(e)}', 'danger')
+
     return redirect(url_for('profile'))
-
+    
 @app.route('/description')
 def description():
     return render_template('description.html')
