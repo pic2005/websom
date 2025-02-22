@@ -3,209 +3,90 @@
 {% block title %}สีประจำเดือน - ข้อมูลสุขภาพ{% endblock %}
 
 {% block body %}
-    <style>
-        :root {
-            --primary: #8b5cf6;
-            --primary-light: #a78bfa;
-            --secondary: #f472b6;
-            --text: #1f2937;
-            --background: #f3f4f6;
-        }
+<div class="container">
+    <header class="header text-center bg-gradient text-white py-5 mb-4 rounded-3" style="background: linear-gradient(135deg, #8b5cf6 0%, #f472b6 100%);">
+        <h1 class="display-4">สีประจำเดือน</h1>
+        <p class="lead">สีของประจำเดือนสามารถบ่งบอกถึงสุขภาพของคุณได้ สีที่แตกต่างกันอาจบ่งบอกถึงภาวะสุขภาพที่แตกต่างกัน</p>
+    </header>
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: 'Prompt', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-            background: var(--background);
-            color: var(--text);
-            line-height: 1.6;
-        }
-
-        .container {
-            max-width: 1000px;
-            margin: 2rem auto;
-            padding: 0 1rem;
-        }
-
-        .header {
-            text-align: center;
-            padding: 2rem 0;
-            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
-            color: white;
-            border-radius: 1rem;
-            margin-bottom: 2rem;
-            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
-        }
-
-        .header h1 {
-            font-size: 2.5rem;
-            margin-bottom: 1rem;
-        }
-
-        .header p {
-            font-size: 1.1rem;
-            max-width: 800px;
-            margin: 0 auto;
-            padding: 0 1rem;
-        }
-
-        .color-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 1.5rem;
-            padding: 1rem;
-        }
-
-        .color-card {
-            background: white;
-            border-radius: 1rem;
-            overflow: hidden;
-            transition: transform 0.2s;
-            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
-        }
-
-        .color-card:hover {
-            transform: translateY(-4px);
-        }
-
-        .color-strip {
-            height: 8px;
-            width: 100%;
-        }
-
-        .color-content {
-            padding: 1.5rem;
-        }
-
-        .color-content h2 {
-            font-size: 1.5rem;
-            margin-bottom: 1rem;
-            color: var(--primary);
-        }
-
-        .color-content p {
-            color: var(--text);
-            font-size: 1rem;
-        }
-
-        .warning {
-            background: #fee2e2;
-            border-radius: 1rem;
-            padding: 1.5rem;
-            margin: 2rem 1rem;
-            border-left: 4px solid #ef4444;
-        }
-
-        .button {
-            display: inline-block;
-            padding: 0.75rem 1.5rem;
-            background: var(--primary);
-            color: white;
-            text-decoration: none;
-            border-radius: 0.5rem;
-            transition: background-color 0.2s;
-            border: none;
-            cursor: pointer;
-            font-size: 1rem;
-            margin: 1rem;
-        }
-
-        .button:hover {
-            background: var(--primary-light);
-        }
-
-        .footer {
-            text-align: center;
-            padding: 2rem;
-        }
-
-        @media (max-width: 768px) {
-            .header h1 {
-                font-size: 2rem;
-            }
-            
-            .color-grid {
-                grid-template-columns: 1fr;
-            }
-        }
-    </style>
-</head>
-<body>
-    <div class="container">
-        <header class="header">
-            <h1>สีประจำเดือน</h1>
-            <p>สีของประจำเดือนสามารถบ่งบอกถึงสุขภาพของคุณได้ สีที่แตกต่างกันอาจบ่งบอกถึงภาวะสุขภาพที่แตกต่างกัน</p>
-        </header>
-
-        <div class="color-grid">
-            <div class="color-card">
-                <div class="color-strip" style="background: #ff0000;"></div>
-                <div class="color-content">
-                    <h2>สีแดงสด</h2>
-                    <p>สีแดงสดมักบ่งบอกถึงประจำเดือนที่มีสุขภาพดีและเป็นปกติ</p>
-                </div>
-            </div>
-
-            <div class="color-card">
-                <div class="color-strip" style="background: #8b0000;"></div>
-                <div class="color-content">
-                    <h2>สีแดงเข้ม</h2>
-                    <p>สีแดงเข้มอาจบ่งบอกถึงเลือดที่มีการสะสมในมดลูกเป็นเวลานานก่อนที่จะถูกขับออกมา</p>
-                </div>
-            </div>
-
-            <div class="color-card">
-                <div class="color-strip" style="background: #a52a2a;"></div>
-                <div class="color-content">
-                    <h2>สีน้ำตาล</h2>
-                    <p>สีน้ำตาลมักบ่งบอกถึงเลือดเก่าที่ถูกขับออกมาจากร่างกาย</p>
-                </div>
-            </div>
-
-            <div class="color-card">
-                <div class="color-strip" style="background: #ffc0cb;"></div>
-                <div class="color-content">
-                    <h2>สีชมพู</h2>
-                    <p>สีชมพูอาจบ่งบอกถึงระดับฮอร์โมนเอสโตรเจนที่ต่ำ หรืออาจเกิดจากการผสมของเลือดกับสารคัดหลั่งอื่น ๆ</p>
-                </div>
-            </div>
-
-            <div class="color-card">
-                <div class="color-strip" style="background: #ffa500;"></div>
-                <div class="color-content">
-                    <h2>สีส้ม</h2>
-                    <p>สีส้มอาจบ่งบอกถึงการติดเชื้อหรือการผสมของเลือดกับสารคัดหลั่งอื่น ๆ</p>
-                </div>
-            </div>
-
-            <div class="color-card">
-                <div class="color-strip" style="background: #808080;"></div>
-                <div class="color-content">
-                    <h2>สีเทาหรือสีเขียว</h2>
-                    <p>สีเทาหรือสีเขียวอาจบ่งบอกถึงการติดเชื้อแบคทีเรียหรือการติดเชื้อทางเพศสัมพันธ์ ควรปรึกษาแพทย์ทันทีหากพบสีนี้</p>
-                </div>
-            </div>
-
-            <div class="color-card">
-                <div class="color-strip" style="background: #000000;"></div>
-                <div class="color-content">
-                    <h2>สีดำ</h2>
-                    <p>สีดำอาจบ่งบอกถึงเลือดเก่าที่ถูกขับออกมาจากร่างกายเป็นเวลานาน แต่หากมีอาการอื่นร่วมด้วยควรปรึกษาแพทย์</p>
+    <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
+        <div class="col">
+            <div class="card h-100 shadow-sm">
+                <div class="card-header bg-danger" style="height: 8px;"></div>
+                <div class="card-body">
+                    <h2 class="card-title text-primary">สีแดงสด</h2>
+                    <p class="card-text">สีแดงสดมักบ่งบอกถึงประจำเดือนที่มีสุขภาพดีและเป็นปกติ</p>
                 </div>
             </div>
         </div>
 
-        <div class="warning">
-            <p>หากคุณพบว่าสีของประจำเดือนของคุณมีความผิดปกติหรือมีอาการอื่น ๆ ร่วมด้วย ควรปรึกษาแพทย์เพื่อรับคำแนะนำและการรักษาที่เหมาะสม</p>
+        <div class="col">
+            <div class="card h-100 shadow-sm">
+                <div class="card-header bg-brown" style="height: 8px; background-color: #a52a2a;"></div>
+                <div class="card-body">
+                    <h2 class="card-title text-primary">สีแดงเข้ม</h2>
+                    <p class="card-text">สีแดงเข้มอาจบ่งบอกถึงเลือดที่มีการสะสมในมดลูกเป็นเวลานานก่อนที่จะถูกขับออกมา</p>
+                </div>
+            </div>
         </div>
 
-        <div class="footer">
-            <button class="button" onclick="location.href='{{ url_for('profile') }}'">ย้อนกลับ</button>
+        <div class="col">
+            <div class="card h-100 shadow-sm">
+                <div class="card-header bg-brown" style="height: 8px; background-color: #3e1f13;"></div>
+                <div class="card-body">
+                    <h2 class="card-title text-primary">สีน้ำตาล</h2>
+                    <p class="card-text">สีน้ำตาลมักบ่งบอกถึงเลือดเก่าที่ถูกขับออกมาจากร่างกาย</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="col">
+            <div class="card h-100 shadow-sm">
+                <div class="card-header bg-pink" style="height: 8px; background-color: #ffc0cb;"></div>
+                <div class="card-body">
+                    <h2 class="card-title text-primary">สีชมพู</h2>
+                    <p class="card-text">สีชมพูอาจบ่งบอกถึงระดับฮอร์โมนเอสโตรเจนที่ต่ำ หรืออาจเกิดจากการผสมของเลือดกับสารคัดหลั่งอื่น ๆ</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="col">
+            <div class="card h-100 shadow-sm">
+                <div class="card-header bg-orange" style="height: 8px; background-color: #ffa500;"></div>
+                <div class="card-body">
+                    <h2 class="card-title text-primary">สีส้ม</h2>
+                    <p class="card-text">สีส้มอาจบ่งบอกถึงการติดเชื้อหรือการผสมของเลือดกับสารคัดหลั่งอื่น ๆ</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="col">
+            <div class="card h-100 shadow-sm">
+                <div class="card-header bg-secondary" style="height: 8px;"></div>
+                <div class="card-body">
+                    <h2 class="card-title text-primary">สีเทาหรือสีเขียว</h2>
+                    <p class="card-text">สีเทาหรือสีเขียวอาจบ่งบอกถึงการติดเชื้อแบคทีเรียหรือการติดเชื้อทางเพศสัมพันธ์ ควรปรึกษาแพทย์ทันทีหากพบสีนี้</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="col">
+            <div class="card h-100 shadow-sm">
+                <div class="card-header bg-dark" style="height: 8px;"></div>
+                <div class="card-body">
+                    <h2 class="card-title text-primary">สีดำ</h2>
+                    <p class="card-text">สีดำอาจบ่งบอกถึงเลือดเก่าที่ถูกขับออกมาจากร่างกายเป็นเวลานาน แต่หากมีอาการอื่นร่วมด้วยควรปรึกษาแพทย์</p>
+                </div>
+            </div>
         </div>
     </div>
-</body>
+
+    <div class="alert alert-warning mt-4" role="alert">
+        <p class="mb-0">หากคุณพบว่าสีของประจำเดือนของคุณมีความผิดปกติหรือมีอาการอื่น ๆ ร่วมด้วย ควรปรึกษาแพทย์เพื่อรับคำแนะนำและการรักษาที่เหมาะสม</p>
+    </div>
+
+    <div class="text-center mt-4">
+        <a href="{{ url_for('profile') }}" class="btn btn-primary btn-lg">ย้อนกลับ</a>
+    </div>
+</div>
 {% endblock %}

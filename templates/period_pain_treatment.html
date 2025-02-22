@@ -3,189 +3,58 @@
 {% block title %}วิธีรักษาการปวดประจำเดือน{% endblock %}
 
 {% block body %}
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>วิธีรักษาการปวดประจำเดือน</title>
-    <style>
-        :root {
-            --primary: #764ba2;
-            --secondary: #f17a88;
-            --text: #2d3748;
-            --background: #f7fafc;
-        }
+<div class="container my-5">
+    <header class="header text-center bg-gradient text-white py-5 mb-4 rounded-3" style="background: linear-gradient(135deg, #764ba2 0%, #f17a88 100%);">
+        <h1 class="display-4">วิธีรักษาการปวดประจำเดือน</h1>
+        <p class="lead">การปวดประจำเดือนเป็นอาการที่พบได้บ่อยในผู้หญิงหลายคน อาการปวดอาจมีตั้งแต่เล็กน้อยจนถึงรุนแรง และอาจมีผลกระทบต่อการดำเนินชีวิตประจำวันได้</p>
+    </header>
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: 'Prompt', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-            background: linear-gradient(135deg, #667eea 0%, #f17a88 100%);
-            color: var(--text);
-            line-height: 1.7;
-            min-height: 100vh;
-            padding: 2rem 1rem;
-        }
-
-        .container {
-            max-width: 800px;
-            margin: 0 auto;
-            background: white;
-            border-radius: 20px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-            overflow: hidden;
-        }
-
-        .header {
-            background: linear-gradient(135deg, var(--primary), var(--secondary));
-            color: white;
-            padding: 2.5rem 2rem;
-            text-align: center;
-        }
-
-        .header h1 {
-            font-size: 2.2rem;
-            margin-bottom: 1rem;
-        }
-
-        .header p {
-            font-size: 1.1rem;
-            opacity: 0.9;
-            max-width: 600px;
-            margin: 0 auto;
-        }
-
-        .content {
-            padding: 2rem;
-        }
-
-        .treatment-card {
-            background: white;
-            border-radius: 15px;
-            padding: 1.5rem;
-            margin-bottom: 1.5rem;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
-            border-left: 4px solid var(--primary);
-            transition: transform 0.2s ease;
-        }
-
-        .treatment-card:hover {
-            transform: translateY(-2px);
-        }
-
-        .treatment-card h2 {
-            color: var(--primary);
-            font-size: 1.4rem;
-            margin-bottom: 1rem;
-            display: flex;
-            align-items: center;
-        }
-
-        .treatment-card h2::before {
-            content: '•';
-            color: var(--secondary);
-            margin-right: 0.5rem;
-            font-size: 1.6rem;
-        }
-
-        .treatment-card p {
-            color: var(--text);
-            font-size: 1.1rem;
-            line-height: 1.7;
-        }
-
-        .warning-card {
-            background: #fff5f5;
-            border-left: 4px solid #fc8181;
-            padding: 1.5rem;
-            border-radius: 15px;
-            margin: 2rem 0;
-        }
-
-        .button {
-            display: inline-block;
-            padding: 0.8rem 2rem;
-            background: var(--primary);
-            color: white;
-            text-decoration: none;
-            border-radius: 8px;
-            border: none;
-            cursor: pointer;
-            font-size: 1rem;
-            transition: all 0.2s ease;
-            margin: 1rem 0;
-        }
-
-        .button:hover {
-            background: var(--secondary);
-            transform: translateY(-1px);
-        }
-
-        .footer {
-            text-align: center;
-            padding: 2rem;
-            background: var(--background);
-        }
-
-        @media (max-width: 768px) {
-            .header h1 {
-                font-size: 1.8rem;
-            }
-            
-            .content {
-                padding: 1.5rem;
-            }
-            
-            .treatment-card {
-                padding: 1.2rem;
-            }
-        }
-    </style>
-</head>
-<body>
-    <div class="container">
-        <header class="header">
-            <h1>วิธีรักษาการปวดประจำเดือน</h1>
-            <p>การปวดประจำเดือนเป็นอาการที่พบได้บ่อยในผู้หญิงหลายคน อาการปวดอาจมีตั้งแต่เล็กน้อยจนถึงรุนแรง และอาจมีผลกระทบต่อการดำเนินชีวิตประจำวันได้</p>
-        </header>
-
-        <div class="content">
-            <div class="treatment-card">
-                <h2>การใช้ยา</h2>
-                <p>ยาแก้ปวด เช่น ไอบูโพรเฟน (Ibuprofen) หรือยาพาราเซตามอล (Paracetamol) สามารถช่วยบรรเทาอาการปวดได้ นอกจากนี้ยังมียาคุมกำเนิดที่สามารถช่วยควบคุมรอบประจำเดือนและลดอาการปวดได้</p>
-            </div>
-
-            <div class="treatment-card">
-                <h2>การใช้ความร้อน</h2>
-                <p>การใช้ถุงน้ำร้อนหรือแผ่นความร้อนประคบที่ท้องล่างสามารถช่วยบรรเทาอาการปวดได้</p>
-            </div>
-
-            <div class="treatment-card">
-                <h2>การออกกำลังกาย</h2>
-                <p>การออกกำลังกายอย่างสม่ำเสมอสามารถช่วยลดอาการปวดประจำเดือนได้ การออกกำลังกายช่วยเพิ่มการไหลเวียนของเลือดและลดการตึงเครียดของกล้ามเนื้อ</p>
-            </div>
-
-            <div class="treatment-card">
-                <h2>การปรับเปลี่ยนพฤติกรรมการกิน</h2>
-                <p>การรับประทานอาหารที่มีประโยชน์ เช่น ผักและผลไม้ และการหลีกเลี่ยงอาหารที่มีไขมันสูงและน้ำตาลสูงสามารถช่วยลดอาการปวดประจำเดือนได้</p>
-            </div>
-
-            <div class="treatment-card">
-                <h2>การใช้วิธีธรรมชาติ</h2>
-                <p>การใช้สมุนไพร เช่น ขิง หรือการนวดเบา ๆ ที่ท้องล่างสามารถช่วยบรรเทาอาการปวดได้</p>
-            </div>
-
-            <div class="warning-card">
-                <h2>การปรึกษาแพทย์</h2>
-                <p>หากอาการปวดประจำเดือนยังคงมีอยู่หรือมีความรุนแรง ควรปรึกษาแพทย์เพื่อรับการวินิจฉัยและการรักษาที่เหมาะสม</p>
+    <div class="content">
+        <div class="card mb-3 shadow-sm">
+            <div class="card-body">
+                <h2 class="card-title text-primary">การใช้ยา</h2>
+                <p class="card-text">ยาแก้ปวด เช่น ไอบูโพรเฟน (Ibuprofen) หรือยาพาราเซตามอล (Paracetamol) สามารถช่วยบรรเทาอาการปวดได้ นอกจากนี้ยังมียาคุมกำเนิดที่สามารถช่วยควบคุมรอบประจำเดือนและลดอาการปวดได้</p>
             </div>
         </div>
 
-        <div class="footer">
-            <button class="button" onclick="location.href='{{ url_for('profile') }}'">ย้อนกลับ</button>
+        <div class="card mb-3 shadow-sm">
+            <div class="card-body">
+                <h2 class="card-title text-primary">การใช้ความร้อน</h2>
+                <p class="card-text">การใช้ถุงน้ำร้อนหรือแผ่นความร้อนประคบที่ท้องล่างสามารถช่วยบรรเทาอาการปวดได้</p>
+            </div>
+        </div>
+
+        <div class="card mb-3 shadow-sm">
+            <div class="card-body">
+                <h2 class="card-title text-primary">การออกกำลังกาย</h2>
+                <p class="card-text">การออกกำลังกายอย่างสม่ำเสมอสามารถช่วยลดอาการปวดประจำเดือนได้ การออกกำลังกายช่วยเพิ่มการไหลเวียนของเลือดและลดการตึงเครียดของกล้ามเนื้อ</p>
+            </div>
+        </div>
+
+        <div class="card mb-3 shadow-sm">
+            <div class="card-body">
+                <h2 class="card-title text-primary">การปรับเปลี่ยนพฤติกรรมการกิน</h2>
+                <p class="card-text">การรับประทานอาหารที่มีประโยชน์ เช่น ผักและผลไม้ และการหลีกเลี่ยงอาหารที่มีไขมันสูงและน้ำตาลสูงสามารถช่วยลดอาการปวดประจำเดือนได้</p>
+            </div>
+        </div>
+
+        <div class="card mb-3 shadow-sm">
+            <div class="card-body">
+                <h2 class="card-title text-primary">การใช้วิธีธรรมชาติ</h2>
+                <p class="card-text">การใช้สมุนไพร เช่น ขิง หรือการนวดเบา ๆ ที่ท้องล่างสามารถช่วยบรรเทาอาการปวดได้</p>
+            </div>
+        </div>
+
+        <div class="card mb-3 shadow-sm">
+            <div class="card-body">
+                <h2 class="card-title text-primary">การปรึกษาแพทย์</h2>
+                <p class="card-text">หากอาการปวดประจำเดือนยังคงมีอยู่หรือมีความรุนแรง ควรปรึกษาแพทย์เพื่อรับการวินิจฉัยและการรักษาที่เหมาะสม</p>
+            </div>
         </div>
     </div>
-</body>
+
+    <div class="text-center mt-4">
+        <a href="{{ url_for('profile') }}" class="btn btn-primary btn-lg">ย้อนกลับ</a>
+    </div>
+</div>
 {% endblock %}

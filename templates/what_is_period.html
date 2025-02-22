@@ -3,147 +3,47 @@
 {% block title %}ประจำเดือนคืออะไร - Women's Stories{% endblock %}
 
 {% block body %}
-    <style>
-        :root {
-            --primary: #764ba2;
-            --secondary: #f17a88;
-            --text: #2d3748;
-            --background: #f7fafc;
-        }
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: 'Prompt', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-            background: linear-gradient(135deg, #667eea 0%, #f17a88 100%);
-            color: var(--text);
-            line-height: 1.7;
-            min-height: 100vh;
-            padding: 2rem 1rem;
-        }
-
-        .container {
-            max-width: 800px;
-            margin: 0 auto;
-            background: white;
-            border-radius: 20px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-            overflow: hidden;
-        }
-
-        .header {
-            background: linear-gradient(135deg, var(--primary), var(--secondary));
-            color: white;
-            padding: 2.5rem 2rem;
-            text-align: center;
-        }
-
-        .header h1 {
-            font-size: 2.2rem;
-            margin-bottom: 1rem;
-        }
-
-        .header p {
-            font-size: 1.1rem;
-            opacity: 0.9;
-            max-width: 600px;
-            margin: 0 auto;
-        }
-
-        .content {
-            padding: 2rem;
-        }
-
-        .info-card {
-            background: white;
-            border-radius: 15px;
-            padding: 1.5rem;
-            margin-bottom: 1.5rem;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
-            border-left: 4px solid var(--primary);
-            transition: transform 0.2s ease;
-        }
-
-        .info-card:hover {
-            transform: translateY(-2px);
-        }
-
-        .info-card h2 {
-            color: var(--primary);
-            font-size: 1.4rem;
-            margin-bottom: 1rem;
-            display: flex;
-            align-items: center;
-        }
-
-        .info-card h2::before {
-            content: '•';
-            color: var(--secondary);
-            margin-right: 0.5rem;
-            font-size: 1.6rem;
-        }
-
-        .info-card p {
-            color: var(--text);
-            font-size: 1.1rem;
-            line-height: 1.7;
-        }
-
-        .button {
-            display: inline-block;
-            padding: 0.8rem 2rem;
-            background: var(--primary);
-            color: white;
-            text-decoration: none;
-            border-radius: 8px;
-            border: none;
-            cursor: pointer;
-            font-size: 1rem;
-            transition: all 0.2s ease;
-            margin: 1rem 0;
-        }
-
-        .button:hover {
-            background: var(--secondary);
-            transform: translateY(-1px);
-        }
-
-        .footer {
-            text-align: center;
-            padding: 2rem;
-            background: var(--background);
-        }
-    </style>
-
-    <div class="container">
-        <header class="header">
-            <h1>ประจำเดือนคืออะไร</h1>
-            <p>การมีประจำเดือนเป็นกระบวนการธรรมชาติที่เกิดขึ้นในร่างกายของผู้หญิง เป็นสัญญาณของระบบสืบพันธุ์ที่ทำงานปกติ</p>
+    <div class="container mt-5">
+        <header class="text-center mb-5">
+            <h1 class="display-4 fw-bold text-white">ประจำเดือนคืออะไร</h1>
+            <p class="lead text-white">การมีประจำเดือนเป็นกระบวนการธรรมชาติที่เกิดขึ้นในร่างกายของผู้หญิง เป็นสัญญาณของระบบสืบพันธุ์ที่ทำงานปกติ</p>
         </header>
 
-        <div class="content">
-            <div class="info-card">
-                <h2>การมีประจำเดือน</h2>
-                <p>การมีประจำเดือน (หรือที่เรียกว่า รอบเดือน) เกิดจากการที่เยื่อบุโพรงมดลูกหลุดออกมาพร้อมกับเลือดที่ไหลออกจากมดลูกทางช่องคลอด</p>
+        <div class="row g-4">
+            <!-- การมีประจำเดือน -->
+            <div class="col-md-6">
+                <div class="card h-100 shadow-sm border-0">
+                    <div class="card-body">
+                        <h2 class="card-title text-primary">การมีประจำเดือน</h2>
+                        <p class="card-text">การมีประจำเดือน (หรือที่เรียกว่า รอบเดือน) เกิดจากการที่เยื่อบุโพรงมดลูกหลุดออกมาพร้อมกับเลือดที่ไหลออกจากมดลูกทางช่องคลอด</p>
+                    </div>
+                </div>
             </div>
 
-            <div class="info-card">
-                <h2>กระบวนการ</h2>
-                <p>ในแต่ละเดือน ร่างกายเตรียมตัวสำหรับการตั้งครรภ์ และเมื่อไม่มีการปฏิสนธิ เยื่อบุโพรงมดลูกที่เตรียมไว้จะหลุดออกมาเป็นประจำเดือน</p>
+            <!-- กระบวนการ -->
+            <div class="col-md-6">
+                <div class="card h-100 shadow-sm border-0">
+                    <div class="card-body">
+                        <h2 class="card-title text-primary">กระบวนการ</h2>
+                        <p class="card-text">ในแต่ละเดือน ร่างกายเตรียมตัวสำหรับการตั้งครรภ์ และเมื่อไม่มีการปฏิสนธิ เยื่อบุโพรงมดลูกที่เตรียมไว้จะหลุดออกมาเป็นประจำเดือน</p>
+                    </div>
+                </div>
             </div>
 
-            <div class="info-card">
-                <h2>รอบประจำเดือน</h2>
-                <p>รอบประจำเดือนโดยทั่วไปอยู่ที่ประมาณ 28 วัน (อาจสั้นกว่าหรือยาวกว่านี้ขึ้นอยู่กับแต่ละบุคคล) และมีระยะเวลาประมาณ 3-7 วัน</p>
+            <!-- รอบประจำเดือน -->
+            <div class="col-md-6">
+                <div class="card h-100 shadow-sm border-0">
+                    <div class="card-body">
+                        <h2 class="card-title text-primary">รอบประจำเดือน</h2>
+                        <p class="card-text">รอบประจำเดือนโดยทั่วไปอยู่ที่ประมาณ 28 วัน (อาจสั้นกว่าหรือยาวกว่านี้ขึ้นอยู่กับแต่ละบุคคล) และมีระยะเวลาประมาณ 3-7 วัน</p>
+                    </div>
+                </div>
             </div>
         </div>
 
-        <div class="footer">
-            <button class="button" onclick="location.href='{{ url_for('profile') }}'">ย้อนกลับ</button>
+        <!-- ปุ่มย้อนกลับ -->
+        <div class="text-center mt-5">
+            <a href="{{ url_for('profile') }}" class="btn btn-primary btn-lg">ย้อนกลับ</a>
         </div>
     </div>
 {% endblock %}
