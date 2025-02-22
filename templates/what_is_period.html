@@ -1,10 +1,8 @@
-<!DOCTYPE html>
-<html lang="th">
+{% extends "base.html" %}
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ประจำเดือนคืออะไร</title>
+{% block title %}ประจำเดือนคืออะไร - Women's Stories{% endblock %}
+
+{% block body %}
     <style>
         :root {
             --primary: #764ba2;
@@ -120,9 +118,7 @@
             background: var(--background);
         }
     </style>
-</head>
 
-<body>
     <div class="container">
         <header class="header">
             <h1>ประจำเดือนคืออะไร</h1>
@@ -150,6 +146,4 @@
             <button class="button" onclick="location.href='{{ url_for('profile') }}'">ย้อนกลับ</button>
         </div>
     </div>
-</body>
-
-</html>
+{% endblock %}

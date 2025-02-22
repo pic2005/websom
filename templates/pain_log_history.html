@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="container">
+    <h2>ประวัติการบันทึกอาการเจ็บปวด</h2>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>วันที่</th>
+                <th>ระดับความเจ็บปวด</th>
+                <th>อาการเพิ่มเติม</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for log in pain_logs %}
+            <tr>
+                <td>{{ log.log_date.strftime('%d-%m-%Y %H:%M') }}</td>
+                <td>{{ log.pain_level }}</td>
+                <td>{{ log.pain_note }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <a href="{{ url_for('profile') }}" class="btn btn-primary">กลับไปยังโปรไฟล์</a>
+</div>
+{% endblock %}

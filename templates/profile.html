@@ -1,356 +1,58 @@
-<!DOCTYPE html>
-<html lang="th">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Period Tracker</title>
-    <style>
-        :root {
-            --primary: #667eea;
-            --primary-dark: #764ba2;
-            --accent: #f17a88;
-            --text: #2d3748;
-            --background: #fafafa;
-            --card: #ffffff;
-            --sidebar-hover: rgba(102, 126, 234, 0.1);
-        }
+{% extends "base.html" %}
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+{% block title %}บันทึกอาการปวด - Women's Stories{% endblock %}
 
-        body {
-            font-family: 'Prompt', 'Segoe UI', sans-serif;
-            background: linear-gradient(135deg, #667eea 0%, #f17a88 100%);
-            color: var(--text);
-            min-height: 100vh;
-        }
+{% block body %}
+<div class="container mt-5">
+    <h1 class="text-center mb-4">บันทึกอาการปวด</h1>
 
-        .sidebar {
-            height: 100vh;
-            width: 280px;
-            position: fixed;
-            top: 0;
-            left: -280px;
-            background: rgba(255, 255, 255, 0.95);
-            transition: 0.3s ease;
-            padding: 1rem 0;
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
-            backdrop-filter: blur(10px);
-            z-index: 1000;
-            display: flex;
-            flex-direction: column;
-        }
-
-        .sidebar.active {
-            left: 0;
-        }
-
-        .sidebar-header {
-            padding: 1rem 1.5rem;
-            border-bottom: 1px solid rgba(102, 126, 234, 0.1);
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            margin-bottom: 0.5rem;
-        }
-
-        .sidebar-header h2 {
-            color: var(--primary);
-            font-size: 1.5rem;
-        }
-
-        .sidebar-items {
-            flex-grow: 1;
-            overflow-y: auto;
-        }
-
-        .sidebar a {
-            padding: 0.875rem 1.5rem;
-            color: #764ba2;
-            text-decoration: none;
-            display: flex;
-            align-items: center;
-            gap: 0.75rem;
-            transition: 0.3s ease;
-            margin: 0.25rem 0.75rem;
-            border-radius: 0.5rem;
-            font-size: 0.95rem;
-        }
-
-        .sidebar a:hover {
-            background: var(--sidebar-hover);
-            color: var(--primary);
-            transform: translateX(5px);
-        }
-
-        .sidebar a.active {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-        }
-
-        .sidebar-footer {
-            padding: 1rem 1.5rem;
-            border-top: 1px solid rgba(102, 126, 234, 0.1);
-        }
-
-        .sidebar-footer a {
-            margin: 0;
-            color: #764ba2;
-            font-size: 0.9rem;
-        }
-
-        .sidebar-footer a:hover {
-            background: none;
-            color: var(--primary);
-            transform: none;
-        }
-
-        .main-content {
-            padding: 2rem;
-            margin-left: 0;
-            transition: 0.3s ease;
-        }
-
-        .main-content.shifted {
-            margin-left: 280px;
-        }
-
-        .menu-button {
-    position: fixed;
-    top: 1rem;
-    left: 0.5rem;
-    color: white;
-    padding: 0.75rem;
-    cursor: pointer;
-    z-index: 900;
-    transition: 0.2s ease;
-    background: none;
-    border: none;
-    outline: none;
-}
-
-
-        .menu-button:hover {
-            transform: scale(1.05);
-        }
-
-        .dashboard {
-            max-width: 1200px;
-            margin: 4rem auto 0;
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-            padding: 0 1rem;
-        }
-
-        .card {
-            background: rgba(255, 255, 255, 0.95);
-            border-radius: 1rem;
-            padding: 2rem;
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
-            backdrop-filter: blur(10px);
-            transition: 0.3s ease;
-        }
-
-        .card:hover {
-            transform: translateY(-5px);
-        }
-
-        .card h2 {
-            color: #764ba2;
-            margin-bottom: 1.5rem;
-            font-size: 1.5rem;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-
-        .date-inputs {
-            display: flex;
-            flex-direction: column;
-            gap: 1rem;
-        }
-
-        .input-group {
-            display: flex;
-            flex-direction: column;
-            gap: 0.5rem;
-        }
-
-        input[type="date"] {
-            padding: 0.75rem;
-            border: 2px solid rgba(102, 126, 234, 0.2);
-            border-radius: 0.5rem;
-            font-size: 1rem;
-            transition: 0.2s ease;
-        }
-
-        input[type="date"]:focus {
-            outline: none;
-            border-color: var(--primary);
-            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
-        }
-
-        textarea {
-            width: 100%;
-            min-height: 120px;
-            padding: 0.75rem;
-            border: 2px solid rgba(102, 126, 234, 0.2);
-            border-radius: 0.5rem;
-            font-size: 1rem;
-            resize: vertical;
-            transition: 0.2s ease;
-        }
-
-        textarea:focus {
-            outline: none;
-            border-color: var(--primary);
-            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
-        }
-
-        button {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-            border: none;
-            padding: 0.75rem 1.5rem;
-            border-radius: 0.5rem;
-            font-size: 1rem;
-            font-weight: 600;
-            cursor: pointer;
-            transition: 0.2s ease;
-            width: 100%;
-            margin-top: 1rem;
-            box-shadow: 0 4px 12px rgba(102, 126, 234, 0.2);
-        }
-
-        button:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 6px 16px rgba(102, 126, 234, 0.3);
-        }
-
-        .next-period {
-            margin-top: 1.5rem;
-            padding-top: 1.5rem;
-            border-top: 1px solid rgba(102, 126, 234, 0.1);
-            color: #764ba2;
-            font-weight: 600;
-        }
-
-        .pain-logs {
-            list-style: none;
-            margin-top: 1.5rem;
-        }
-
-        .pain-logs li {
-            padding: 1rem;
-            border-bottom: 1px solid rgba(102, 126, 234, 0.1);
-        }
-
-        .pain-logs li:last-child {
-            border-bottom: none;
-        }
-
-        @media (max-width: 768px) {
-            .dashboard {
-                grid-template-columns: 1fr;
-            }
-
-            .main-content.shifted {
-                margin-left: 0;
-            }
-
-            .sidebar {
-                width: 100%;
-                left: -100%;
-            }
-
-            .sidebar.active {
-                left: 0;
-            }
-        }
-    </style>
-</head>
-<body>
-    <nav class="sidebar" id="sidebar">
-        <div class="sidebar-header">
-            <h2>เมนู</h2>
-            <button onclick="toggleNav()" style="background: none; width: auto; margin: 0; color: var(--text); box-shadow: none;">✕</button>
+    <!-- ฟอร์มสำหรับบันทึกอาการปวด -->
+    <form method="POST" action="{{ url_for('save_period_and_pain_log') }}" class="card p-4 mb-5 shadow">
+        <div class="mb-3">
+            <label for="period_start_date" class="form-label">วันที่เริ่มมีประจำเดือน:</label>
+            <input type="date" id="period_start_date" name="period_start_date" class="form-control" required>
         </div>
-        <div class="sidebar-items">
-            <a href="{{ url_for('home') }}" class="active">🏠 หน้าแรก</a>
-            <a href="{{ url_for('what_is_period') }}">❓ ประจำเดือนคืออะไร</a>
-            <a href="{{ url_for('description') }}">📖 วิธีการนับประจำเดือน</a>
-            <a href="{{ url_for('abnormalities') }}">⚠️ ความผิดปกติ</a>
-            <a href="{{ url_for('period_pain') }}">🤕 อาการปวดประจำเดือน</a>
-            <a href="{{ url_for('period_color') }}">🎨 สีประจำเดือน</a>
-            <a href="{{ url_for('period_pain_treatment') }}">💊 วิธีรักษาการปวดประจำเดือน</a>
-            <a href="{{ url_for('abnormal_period_pain_treatment') }}">🏥 วิธีรักษาการปวดประจำเดือนที่มาผิดปกติ</a>
+        <div class="mb-3">
+            <label for="period_end_date" class="form-label">วันที่หมดประจำเดือน:</label>
+            <input type="date" id="period_end_date" name="period_end_date" class="form-control" required>
         </div>
-        <div class="sidebar-footer">
-            <a href="{{ url_for('logout') }}">🚪 ออกจากระบบ</a>
+        <div class="mb-3">
+            <label for="pain_level" class="form-label">ระดับความเจ็บปวด:</label>
+            <select id="pain_level" name="pain_level" class="form-select" required>
+                <option value="1">😊 ไม่เจ็บ</option>
+                <option value="2">😐 เจ็บเล็กน้อย</option>
+                <option value="3">😕 เจ็บปานกลาง</option>
+                <option value="4">😣 เจ็บมาก</option>
+                <option value="5">😫 เจ็บมากที่สุด</option>
+            </select>
         </div>
-    </nav>
-
-    <button class="menu-button" onclick="toggleNav()">☰</button>
-
-    <main class="main-content" id="main">
-        <div class="dashboard">
-            <div class="card">
-                <h2>📅 วันที่ปัจจุบัน</h2>
-                <p style="font-size: 1.25rem;">{{ current_date }}</p>
-                
-                <div class="date-inputs">
-                    <form method="POST">
-                        <div class="input-group">
-                            <label for="period_start_date">วันที่เริ่มมีประจำเดือน:</label>
-                            <input type="date" id="period_start_date" name="period_start_date" value="{{ period_start_date }}">
-                        </div>
-                        <div class="input-group">
-                            <label for="period_end_date">วันที่หมดประจำเดือน:</label>
-                            <input type="date" id="period_end_date" name="period_end_date" value="{{ period_end_date }}">
-                        </div>
-                        <button type="submit">บันทึกข้อมูล</button>
-                    </form>
-                    {% if next_period_date %}
-                    <div class="next-period">
-                        🗓️ ประจำเดือนรอบถัดไปคาดว่าจะมาวันที่: {{ next_period_date }}
-                    </div>
-                    {% endif %}
-                </div>
-            </div>
-
-            <div class="card">
-                <h2>📝 บันทึกอาการ</h2>
-                <form method="POST" action="{{ url_for('save_pain_log') }}">
-                    <textarea name="pain_log" placeholder="บันทึกอาการปวดและความรู้สึกของคุณที่นี่..."></textarea>
-                    <button type="submit">บันทึกอาการ</button>
-                </form>
-            </div>
-
-            <div class="card">
-                <h2>📊 ประวัติการบันทึก</h2>
-                <ul class="pain-logs">
-                    {% for log in pain_logs %}
-                    <li>
-                        <strong>{{ log.created_at.strftime('%d-%m-%Y %H:%M') }}</strong>
-                        <p>{{ log.pain_log }}</p>
-                    </li>
-                    {% endfor %}
-                </ul>
-            </div>
+        <div class="mb-3">
+            <label for="pain_note" class="form-label">อาการเพิ่มเติม:</label>
+            <textarea id="pain_note" name="pain_note" rows="4" class="form-control"></textarea>
         </div>
-    </main>
+        <button type="submit" class="btn btn-primary w-100">บันทึกข้อมูล</button>
+    </form>
 
-    <script>
-        function toggleNav() {
-            const sidebar = document.getElementById("sidebar");
-            const main = document.getElementById("main");
-            sidebar.classList.toggle("active");
-            main.classList.toggle("shifted");
-        }
-    </script>
-</body>
-</html>
+    <h1 class="text-center mb-4">ประวัติการบันทึกอาการปวด</h1>
+    <div class="table-responsive">
+        <table class="table table-bordered table-hover shadow">
+            <thead class="table-primary">
+                <tr>
+                    <th>วันที่</th>
+                    <th>ระดับความเจ็บปวด</th>
+                    <th>อาการเพิ่มเติม</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for log in pain_logs %}
+                <tr>
+                    <td>{{ log.log_date.strftime('%d-%m-%Y %H:%M') }}</td>
+                    <td>{{ log.pain_level }}</td>
+                    <td>{{ log.pain_note }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+{% endblock %}
